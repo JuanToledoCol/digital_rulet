@@ -1,0 +1,2539 @@
+<!doctype html>
+<html lang="es" xml:lang="es">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Ruleta de premios</title>
+
+    <!-- Minify start -->
+    <link
+      rel="stylesheet"
+      href="../../css/all.front.compiled4614.css?1714697648"
+    />
+    <link rel="stylesheet" href="../../css/wheel53f0.css?1687948130" />
+    <!-- Minify end -->
+
+    <link
+      rel="stylesheet"
+      media="print"
+      onload="this.onload = null;
+this.removeAttribute('media');"
+      href="../../font/fa-pro-6/css/all.min.css"
+    />
+    <link rel="alternate" hreflang="es" href="la-ruleta-decide.html" />
+    <link rel="alternate" hreflang="es" href="la-ruleta-decide.html" />
+    <link rel="canonical" href="la-ruleta-decide.html" />
+
+    <style>
+      @font-face {
+        font-family: "Inter";
+        font-style: normal;
+        font-weight: 400;
+        font-display: swap;
+        src: url(https://fonts.gstatic.com/l/font?kit=UcC73FwrK3iLTeHuS_fvQtMwCp50KnMq15j8eUYD8fQ0mlf4NL5mvYSyqNvhTwa1IMYIbCJ69m5mMb9yTWxOO7iR4pgt3UZ1xF-tILhhEzvI1TbsGEKDzjIsVBvuMZhTMGJQ80pvVRQj34M2K4KY05QmS3OZJZqbwp_p9Yl4KhZJPqav8xT2FCh0qlhn&amp;skey=c491285d6722e4fa&amp;v=v13)
+          format("woff2");
+      }
+
+      @font-face {
+        font-family: "Inter";
+        font-style: normal;
+        font-weight: 500;
+        font-display: swap;
+        src: url(https://fonts.gstatic.com/l/font?kit=UcC73FwrK3iLTeHuS_fvQtMwCp50KnMq15j8eUYD8fQ0mlf4NL5mvYSyqNvhTwa1IMYIbCJ69m5mMb9yTWxOO7iR4pgt3UZ1xF-tILhhEzvI1TbsGEKDzjIsVBvuMZhTMGJQ80pvVRQj34M2K4KY05QmS3OZJZqbwp_p9Yl4KhZJPqav8xT2FCh0qlhn&amp;skey=c491285d6722e4fa&amp;v=v13)
+          format("woff2");
+      }
+
+      @font-face {
+        font-family: "Inter";
+        font-style: normal;
+        font-weight: 700;
+        font-display: swap;
+        src: url(https://fonts.gstatic.com/l/font?kit=UcC73FwrK3iLTeHuS_fvQtMwCp50KnMq15j8eUYD8fQ0mlf4NL5mvYSyqNvhTwa1IMYIbCJ69m5mMb9yTWxOO7iR4pgt3UZ1xF-tILhhEzvI1TbsGEKDzjIsVBvuMZhTMGJQ80pvVRQj34M2K4KY05QmS3OZJZqbwp_p9Yl4KhZJPqav8xT2FCh0qlhn&amp;skey=c491285d6722e4fa&amp;v=v13)
+          format("woff2");
+      }
+
+      @font-face {
+        font-family: "Inter";
+        font-style: normal;
+        font-weight: 900;
+        font-display: swap;
+        src: url(https://fonts.gstatic.com/l/font?kit=UcC73FwrK3iLTeHuS_fvQtMwCp50KnMq15j8eUYD8fQ0mlf4NL5mvYSyqNvhTwa1IMYIbCJ69m5mMb9yTWxOO7iR4pgt3UZ1xF-tILhhEzvI1TbsGEKDzjIsVBvuMZhTMGJQ80pvVRQj34M2K4KY05QmS3OZJZqbwp_p9Yl4KhZJPqav8xT2FCh0qlhn&amp;skey=c491285d6722e4fa&amp;v=v13)
+          format("woff2");
+      }
+
+      body {
+        font-family: "Inter", sans-serif;
+        font-size: 15px;
+        -webkit-font-smoothing: antialiased;
+      }
+    </style>
+  </head>
+
+  <body class=" ">
+    <div class="main">
+      <div id="wof" class="notranslate" translate="no" v-cloak>
+        <div class="container" style="position: relative">
+          <div
+            class="wof pb-5"
+            :class="{'opened': customizer_mobile_opened}"
+            v-cloak
+          >
+            <!-- Config -->
+            <div
+              class="wof__config card dash"
+              v-if="mode==='edit' && !is_wheel_play_only"
+              id="sidebarCollapseParent"
+            >
+              <div class="wof__config__menu d-lg-none">
+                <a
+                  class="wof__config__menu-item"
+                  :class="{active: customize_tab==='config'}"
+                  href="#"
+                  @click.prevent="onSelectTab('config')"
+                >
+                  <i class="far fa-cog"></i> {{ $t('app_wheel.tab_config') }}
+                </a>
+                <a
+                  class="wof__config__menu-item"
+                  :class="{active: customize_tab==='prizes'}"
+                  href="#"
+                  @click.prevent="onSelectTab('prizes')"
+                >
+                  <i class="fa-solid fa-gift"></i> {{
+                  $t('app_wheel.tab_entries') }}
+                </a>
+                <a
+                  class="wof__config__menu-item"
+                  :class="{active: customize_tab==='design'}"
+                  href="#"
+                  @click.prevent="onSelectTab('design')"
+                >
+                  <i class="fa-solid fa-palette"></i> {{
+                  $t('app_wheel.tab_design') }}
+                </a>
+                <a class="wof__config__close" @click="closeCustomizer()">
+                  <i class="far fa-times"></i>
+                </a>
+              </div>
+
+              <div
+                class="promotion-editor-sidebar-section collapsed first-child d-none d-lg-block"
+                data-toggle="collapse"
+                data-target="#Customizer_Section_Form"
+              >
+                <i class="fa-solid fa-gear"></i> {{ $t('app_wheel.tab_config')
+                }}
+              </div>
+
+              <div
+                id="Customizer_Section_Form"
+                class="row collapse promotion-editor-sidebar-body"
+                data-parent="#sidebarCollapseParent"
+              >
+                <div class="wof__config__body">
+                  <div class="form-group" v-if="savedWheel && savedWheel.id">
+                    <label for="">{{ $t('app_wheel.label_name') }}</label>
+                    <input type="text" class="form-control" v-model="title" />
+                  </div>
+                  <!-- <div class="form-group"> -->
+                  <!--   <div class="label_with_check _df _aic"> -->
+                  <!--     <input -->
+                  <!--       type="checkbox" -->
+                  <!--       v-model="config.show_title" -->
+                  <!--       id="show_title" -->
+                  <!--       v-if="!config.capture_leads" -->
+                  <!--     /> -->
+                  <!--     <label for="show_title" -->
+                  <!--       >{{ $t('app_wheel.label_title') }}</label -->
+                  <!--     > -->
+                  <!--   </div> -->
+                  <!--   <input -->
+                  <!--     v-if="config.show_title" -->
+                  <!--     v-model="config.title" -->
+                  <!--     type="text" -->
+                  <!--     class="form-control" -->
+                  <!--   /> -->
+                  <!-- </div> -->
+                  <!-- <div class="form-group"> -->
+                  <!--   <div class="label_with_check _df _aic"> -->
+                  <!--     <input -->
+                  <!--       type="checkbox" -->
+                  <!--       v-model="config.show_desc" -->
+                  <!--       id="show_description" -->
+                  <!--       v-if="!config.capture_leads" -->
+                  <!--     /> -->
+                  <!--     <label for="show_description" -->
+                  <!--       >{{ $t('app_wheel.label_description') }}</label -->
+                  <!--     > -->
+                  <!--   </div> -->
+                  <!--   <textarea -->
+                  <!--     v-if="config.show_desc" -->
+                  <!--     v-model="config.description" -->
+                  <!--     class="form-control" -->
+                  <!--     rows="3" -->
+                  <!--   ></textarea> -->
+                  <!-- </div> -->
+                  <div class="form-group">
+                    <div class="label_with_check _df _aic">
+                      <input
+                        type="checkbox"
+                        v-model="config.show_start_button"
+                        id="show_start_button"
+                        v-if="!config.capture_leads"
+                      />
+                      <label for="show_start_button"
+                        >{{ $t('app_wheel.label_spin_btn') }}</label
+                      >
+                    </div>
+                    <input
+                      v-if="config.show_start_button"
+                      v-model="config.start_button"
+                      type="text"
+                      maxlength="24"
+                      class="form-control"
+                    />
+                  </div>
+                  <div
+                    class="form-group mb-3 noselect"
+                    v-if="!config.capture_leads"
+                  >
+                    <div class="custom-control custom-checkbox">
+                      <input
+                        type="checkbox"
+                        class="custom-control-input"
+                        id="playSounds"
+                        v-model="config.play_sounds"
+                        @change="onPlaySoundsChange()"
+                      />
+                      <label
+                        class="custom-control-label text-muteda"
+                        for="playSounds"
+                        >{{ $t('app_wheel.label_play_sounds') }}</label
+                      >
+                    </div>
+                  </div>
+                  <div
+                    class="form-group mb-3 noselect"
+                    v-if="!config.capture_leads"
+                  >
+                    <div class="custom-control custom-checkbox">
+                      <input
+                        type="checkbox"
+                        class="custom-control-input"
+                        id="showConfettis"
+                        v-model="config.show_confettis"
+                        @change="onShowConfettisChange()"
+                      />
+                      <label
+                        class="custom-control-label text-mutead"
+                        for="showConfettis"
+                        >{{ $t('app_wheel.label_show_confettis') }}</label
+                      >
+                    </div>
+                  </div>
+                  <!-- <div class="form-group mb-3 d-none d-lg-block">
+                                <div class="custom-control custom-checkbox">
+                                    <input type="checkbox" :checked="config.capture_leads" class="custom-control-input" id="capture_leads" @click="setCaptureLeads($event.target.checked)">
+                                    <label class="custom-control-label" for="capture_leads">{{ $t('app_wheel.label_capture_leads') }}</label>
+                                </div>
+                            </div> -->
+
+                  <!-- <div -->
+                  <!--   class="form-group _df _aic _jcb" -->
+                  <!--   v-if="!config.capture_leads" -->
+                  <!-- > -->
+                  <!--   <label class="mb-0" -->
+                  <!--     >{{ $t('app_wheel.label_spin_duration') }}</label -->
+                  <!--   > -->
+                  <!--   <select -->
+                  <!--     class="form-control _fs14 px-1" -->
+                  <!--     style="max-width: 100px" -->
+                  <!--     v-model="config.wheel_spin_duration" -->
+                  <!--   > -->
+                  <!--     <option value="6">6 sec</option> -->
+                  <!--     <option value="10">10 sec</option> -->
+                  <!--     <option value="14">14 sec</option> -->
+                  <!--   </select> -->
+                  <!-- </div> -->
+                </div>
+              </div>
+
+              <div
+                class="promotion-editor-sidebar-section collapsed d-none d-lg-block"
+                data-toggle="collapse"
+                data-target="#Customizer_Section_Design"
+              >
+                <i class="fa-solid fa-palette"></i> {{
+                $t('app_wheel.tab_design') }}
+              </div>
+              <div
+                id="Customizer_Section_Design"
+                class="row collapse promotion-editor-sidebar-body"
+                data-parent="#sidebarCollapseParent"
+              >
+                <div class="wof__config__body">
+                  <div class="form-group">
+                    <label for="show_description"
+                      >{{ $t('app_wheel.label_themes') }}</label
+                    >
+                    <div
+                      class="d-flex"
+                      style="
+                        flex-wrap: nowrap;
+                        justify-content: space-between;
+                        overflow-x: auto;
+                      "
+                    >
+                      <div class="color_palette" v-for="theme in themes">
+                        <span
+                          v-for="color in theme.wheel_slices_color"
+                          @click="useTheme(theme)"
+                          :style="{backgroundColor: color}"
+                        ></span>
+                      </div>
+                    </div>
+                  </div>
+
+                  <hr class="form-divider" />
+
+                  <div class="form-group _df _aic _jcb">
+                    <label class="mb-0"
+                      >{{ $t('app_wheel.label_background_color') }}</label
+                    >
+                    <div
+                      class="color-input form-control form-control-lg"
+                      style="max-width: 130px"
+                    >
+                      {{ design.page_background_color }}
+                      <input
+                        type="color"
+                        class="form-control form-control-lg"
+                        v-model="design.page_background_color"
+                      />
+                    </div>
+                  </div>
+
+                  <div class="form-group _df _aic _jcb">
+                    <label class="mb-0"
+                      >{{ $t('app_wheel.label_text_color') }}</label
+                    >
+                    <div
+                      class="color-input form-control form-control-lg"
+                      style="max-width: 130px"
+                    >
+                      {{ design.main_color }}
+                      <input
+                        type="color"
+                        class="form-control form-control-lg"
+                        v-model="design.main_color"
+                      />
+                    </div>
+                  </div>
+
+                  <!-- <div class="or">Advanced Settings</div> -->
+                  <div class="form-group">
+                    <div class="label_with_check _df _aic">
+                      <input
+                        type="checkbox"
+                        v-model="show_design_advanced_settings"
+                        id="show_design_advanced_settings"
+                      />
+                      <label for="show_design_advanced_settings"
+                        >{{ $t('app_wheel.label_advanced_settings') }}</label
+                      >
+                    </div>
+                  </div>
+
+                  <div
+                    class="form-group _df _aic _jcb"
+                    v-if="show_design_advanced_settings && design.wheel_slices_color.length < 7"
+                  >
+                    <label class="mb-0"
+                      >{{ $t('app_wheel.label_wheel_slices_color') }}</label
+                    >
+                    <div class="themes-color-editor _df">
+                      <input
+                        type="color"
+                        class="form-control form-control-lg ml-1"
+                        v-model="design.wheel_slices_color[index]"
+                        v-for="(color, index) in design.wheel_slices_color"
+                        @input="onDesignPropChanged($event, 'wheel_slices_color', index)"
+                      />
+                    </div>
+                  </div>
+
+                  <div
+                    class="form-group _df _aic _jcb"
+                    v-if="show_design_advanced_settings"
+                  >
+                    <label class="mb-0"
+                      >{{ $t('app_wheel.label_wheel_border_color') }}</label
+                    >
+                    <div
+                      class="color-input form-control form-control-lg"
+                      style="max-width: 130px"
+                    >
+                      {{ design.wheel_border_color }}
+                      <input
+                        type="color"
+                        class="form-control form-control-lg"
+                        v-model="design.wheel_border_color"
+                        @input="onDesignPropChanged($event, 'wheel_border_color')"
+                      />
+                    </div>
+                  </div>
+
+                  <div
+                    class="form-group _df _aic _jcb"
+                    v-if="show_design_advanced_settings"
+                  >
+                    <label class="mb-0"
+                      >{{ $t('app_wheel.label_wheel_slice_text_color') }}</label
+                    >
+                    <div
+                      class="color-input form-control form-control-lg"
+                      style="max-width: 130px"
+                    >
+                      {{ design.wheel_slices_text_color }}
+                      <input
+                        type="color"
+                        class="form-control form-control-lg"
+                        v-model="design.wheel_slices_text_color"
+                        @input="onDesignPropChanged($event, 'wheel_slices_text_color')"
+                      />
+                    </div>
+                  </div>
+
+                  <div
+                    class="form-group _df _aic _jcb"
+                    v-if="show_design_advanced_settings"
+                  >
+                    <label class="mb-0"
+                      >{{ $t('app_wheel.label_wheel_pointer_color') }}</label
+                    >
+                    <div
+                      class="color-input form-control form-control-lg"
+                      style="max-width: 130px"
+                    >
+                      {{ design.wheel_pointer_color }}
+                      <input
+                        type="color"
+                        class="form-control form-control-lg"
+                        v-model="design.wheel_pointer_color"
+                        @input="onDesignPropChanged($event, 'wheel_pointer_color')"
+                      />
+                    </div>
+                  </div>
+
+                  <div
+                    class="form-group _df _aic _jcb"
+                    v-if="false && show_design_advanced_settings"
+                  >
+                    <label class="mb-0"
+                      >{{ $t('app_wheel.label_wheel_dots_color') }}</label
+                    >
+                    <div
+                      class="color-input form-control form-control-lg"
+                      style="max-width: 130px"
+                    >
+                      {{ design.wheel_dots_color }}
+                      <input
+                        type="color"
+                        class="form-control form-control-lg"
+                        v-model="design.wheel_dots_color"
+                      />
+                    </div>
+                  </div>
+
+                  <div
+                    class="form-group _df _aic _jcb"
+                    v-if="show_design_advanced_settings"
+                  >
+                    <label class="mb-0"
+                      >{{ $t('app_wheel.label_wheel_line_size') }}</label
+                    >
+                    <input
+                      type="range"
+                      min="0"
+                      max="6"
+                      step="2"
+                      class="form-control form-control-lg px-0"
+                      style="max-width: 130px"
+                      v-model="design.wheel_lines_size"
+                      @input="onDesignPropChanged($event, 'wheel_lines_size')"
+                    />
+                  </div>
+                </div>
+              </div>
+
+              <div
+                class="promotion-editor-sidebar-section d-none d-lg-block"
+                data-toggle="collapse"
+                data-target="#Customizer_Section_Prizes"
+              >
+                <i class="fa-solid fa-gift"></i>
+                <span v-if="config.capture_leads"
+                  >{{ $t('app_wheel.tab_rewards') }}</span
+                >
+                <span v-else>{{ $t('app_wheel.tab_entries') }}</span>
+                <span
+                  class="ml-1 _fs16"
+                  style="opacity: 0.6"
+                  v-if="!config.capture_leads"
+                  >({{participants.length}})</span
+                >
+              </div>
+              <div
+                id="Customizer_Section_Prizes"
+                class="row show promotion-editor-sidebar-body"
+                data-parent="#sidebarCollapseParent"
+              >
+                <div class="wof__config__body">
+                  <div class="form-group mb-0" v-if="is_editing_bulk">
+                    <!-- <label for="show_title">{{ $t('app_wheel.label_add_entries') }}</label> -->
+                    <div class="_df _aic mb-2">
+                      <button
+                        @click="onSortEntrants()"
+                        class="btn btn-secondary btn-xs mr-2"
+                      >
+                        <i
+                          class="fa-solid fa-arrow-up-a-z"
+                          v-if="last_sort === 'za'"
+                        ></i>
+                        <i class="fa-solid fa-arrow-down-a-z" v-else></i>
+                        {{ $t('app_wheel.btn_sort') }}
+                      </button>
+                      <button
+                        @click="onShuffleEntrants()"
+                        class="btn btn-secondary btn-xs mr-2"
+                      >
+                        <i class="far d-none mr-1 fa-random"></i> {{
+                        $t('app_wheel.btn_random') }}
+                      </button>
+                      <button
+                        @click="onClearEntrants()"
+                        class="btn btn-secondary btn-xs"
+                      >
+                        <i class="far d-none mr-1 fa-trash-alt"></i> {{
+                        $t('app_wheel.btn_clear') }}
+                      </button>
+                    </div>
+                    <div class="form-group mb-1 mt-3 mb-3">
+                      <div class="custom-control custom-checkbox">
+                        <input
+                          id="toggleAdvancedMode"
+                          type="checkbox"
+                          class="custom-control-input"
+                          v-model="config.advanced_mode"
+                          @change="setAdvancedMode()"
+                        />
+                        <label
+                          class="custom-control-label"
+                          for="toggleAdvancedMode"
+                          >{{ $t('app_wheel.btn_advanced') }}</label
+                        >
+                      </div>
+                    </div>
+                    <!-- <div class="form-group mb-3 noselect" v-if="!config.capture_leads">
+                                    <div class="custom-control custom-checkbox">
+                                        <input type="checkbox" class="custom-control-input" id="wheel_improve_slices" v-model="config.improve_slices" @change="setup()">
+                                        <label class="custom-control-label" for="wheel_improve_slices">{{ $t('app_wheel.label_improve_slices') }}</label>
+                                    </div>
+                                </div> -->
+                    <textarea
+                      v-if="!config.advanced_mode"
+                      class="form-control form-control-lg"
+                      v-model="wheel_add_option_textarea"
+                      rows="16"
+                      @input="onWheelOptionsChanged()"
+                    ></textarea>
+                    <div v-else>
+                      <div
+                        class="_df _aic mb-1"
+                        v-for="(prize, index) in wheel_add_option_list"
+                      >
+                        <div class="_pr w-100">
+                          <input
+                            type="text"
+                            v-model="prize.text"
+                            @input="onPrizeInputChange()"
+                            class="form-control form-control-sm _fs13"
+                          />
+                          <div
+                            class="tex-muted small"
+                            style="position: absolute; top: 9px; right: 9px"
+                          >
+                            <span style="color: #333" v-if="prize.chance !== -1"
+                              >{{ prize.chance }}%</span
+                            >
+                            <span v-else style="color: #999"
+                              >{{ prize.calculated_chance }}%</span
+                            >
+                          </div>
+                        </div>
+                        <button
+                          class="btn btn-link p-0 _fs16 btn-xs ml-2"
+                          @click="onEditEntry(prize, index)"
+                        >
+                          <i class="fas fa-cog"></i>
+                        </button>
+                        <button
+                          class="btn btn-link p-0 _fs16 btn-xs ml-2"
+                          @click="onDeleteEntry(prize, index)"
+                        >
+                          <i class="fas fa-trash"></i>
+                        </button>
+                      </div>
+                      <button
+                        class="btn btn-sm btn-primary btn-block mt-3"
+                        @click="onAddEntry()"
+                      >
+                        {{ $t('app_wheel.btn_add_entry') }}
+                      </button>
+                    </div>
+                  </div>
+
+                  <!-- <div class="form-group" v-if="!is_editing_bulk">
+                                <div class="_df _aic _jcb mb-2">
+                                    <label for="show_title">
+                                        {{ $t('app_wheel.label_add_entry') }}
+                                    </label>
+                                    <a href="javascript:void(0)" @click="onEditBulkEntries()">{{ $t('app_wheel.btn_text_mode') }}</a>
+                                </div>
+                                <div class="_pr input-add-entry">
+                                    <input class="form-control form-control-lg" v-model="wheel_add_option_input" @keyup.enter="onAddOptionToWheel()">
+                                    <i class="far fa-arrow-square-right" @click="onAddOptionToWheel()" data-toggle="tooltip" title="Enter"></i>
+                                </div>
+                            </div> -->
+
+                  <div class="" v-if="!is_editing_bulk && participants.length">
+                    <!-- <label for="show_title">{{ $t('app_wheel.label_entries') }}</label> -->
+                    <div
+                      class="input-wrap mb-1"
+                      v-for="(prize, index) in prizes"
+                    >
+                      <input
+                        type="text"
+                        v-model="prize.name"
+                        class="form-control form-control-sm _fs13"
+                        @input="onInputPrizeChange()"
+                        :class="(prize.type === 'empty') ? 'form-control-border-danger' : 'form-control-border-success'"
+                      />
+                    </div>
+                    <!-- <ul class="list-group">
+                                    <li class="list-group-item list-group-item-flex p-2" v-for="(prize, index) in participants">
+                                        <span class="text-muted _fs12">{{ prize }}</span>
+                                        <span><i class="far fa-times text-danger" @click="onRemoveEntry(index)"></i></span>
+                                    </li>
+                                </ul> -->
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Wheel Preview -->
+            <div
+              class="wof__main"
+              id="screencast"
+              :style="getWheelStyles('page')"
+              @click="onWheelPreviewClick()"
+              :class="{'playing': mode==='play', 'centered': is_wheel_centered, 'noselect editing': mode !== 'play', 'fullscreen': is_full_screen, 'spinning': is_wheel_spinning}"
+            >
+              <div class="wof__main__l">
+                <div class="app-hero__content" style="margin-bottom: 0.5rem">
+                  <div class="container">
+                    <div class="text-center">
+                      <h1 class="app-hero__title">La Ruleta de Premios</h1>
+                    </div>
+                  </div>
+                </div>
+                <!-- Wheel Current Winner -->
+                <div
+                  class="wof__wheel__winner"
+                  v-if="wheel_segment_name"
+                  :style="{color: design.main_color}"
+                >
+                  <h1
+                    class="truncated_"
+                    :style="{fontSize: getFontSize(wheel_segment_name)}"
+                  >
+                    {{ wheel_segment_name }}
+                  </h1>
+                </div>
+
+                <!-- Wheel -->
+                <div class="wof__wheel">
+                  <img src="../../img/apps/logo.jpg" class="wof__wheel__logo" />
+                  <canvas
+                    v-on:click="run"
+                    id="canvas"
+                    width="500"
+                    height="500"
+                  ></canvas>
+
+                  <div class="wof__wheel__pointer">
+                    <svg
+                      width="100%"
+                      height="100%"
+                      viewBox="0 0 273 147"
+                      class="wof__wheel__pointer-svg"
+                      :style="getWheelStyles('pointer')"
+                    >
+                      <g>
+                        <path
+                          fill="currentColor"
+                          d="M196.3 0h10.5l1 .25c10.06 1.9 19.63 5.06 28.1 10.93 11.28 7.55 19.66 18.43 25.12 30.78 1.9 6.4 4.06 12.23 4 19.04-.1 5.3.3 10.7-.34 15.97-2.18 14.1-9.08 27.46-19.38 37.33-10.03 10-23.32 16.4-37.33 18.4-4.95.54-10 .3-14.97.3-6.4-.02-13.06-2.82-19.2-4.68-54.98-17.5-109.95-35.08-164.96-52.5C4.7 74.7 2.14 73.33 0 69.5v-6.26c1.47-1.93 2.94-3.95 5.34-4.77C64.47 39.78 123.84 20.77 183 2c4.3-1.15 8.9-1.2 13.3-2z"
+                        ></path>
+                        <path
+                          class="wof-pointer-shadow"
+                          opacity=".2"
+                          d="M261.02 41.96c6.74 9.2 10.54 20.04 11.98 31.3V88c-1.9 14.78-8.25 28.63-18.78 39.24-11 11.34-25.83 18.16-41.52 19.78h-12.65c-3.8-.6-7.57-1.4-11.22-2.63C132.4 126.43 76 108.37 19.55 90.5c-3.4-1.22-8.1-1.62-10.12-4.94-2.2-3.14-1.5-6.3-.6-9.73 55.02 17.4 110 35 164.97 52.5 6.14 1.85 12.8 4.65 19.2 4.66 4.97 0 10.02.24 14.97-.3 14-2 27.3-8.4 37.33-18.4 10.3-9.87 17.2-23.24 19.38-37.33.63-5.27.23-10.66.34-15.97.06-6.8-2.1-12.64-4-19.04v.01z"
+                        ></path>
+                        <ellipse
+                          stroke="none"
+                          ry="25"
+                          rx="25"
+                          cy="65"
+                          cx="199.124"
+                          fill="#ffffff"
+                        ></ellipse>
+                      </g>
+                    </svg>
+                  </div>
+
+                  <div
+                    class="wof__wheel__border"
+                    :style="getWheelStyles('border')"
+                    v-on:click="run"
+                  ></div>
+                </div>
+
+                <!-- <button class="wof__main__btn" @click="resetPlayWheel()" :style="getWheelStyles('spin-btn-alone')" v-if="is_wheel_finished">{{ $t('app_wheel.btn_restart') }}</button> -->
+
+                <!-- Spin Button -->
+                <button
+                  @click="run()"
+                  class="wof__main__btn"
+                  v-show="!is_wheel_centered || !!is_wheel_centered"
+                  v-if="config.show_start_button && is_spin_btn_alone && !is_wheel_spinning"
+                  :style="getWheelStyles('spin-btn-alone')"
+                >
+                  {{ (config.start_button) ? config.start_button :
+                  $t('app_wheel.btn_spin_default') }}
+                </button>
+
+                <!-- Winners History -->
+                <div
+                  class="wof__main__winners"
+                  v-if="show_winners && !is_wheel_spinning"
+                  :style="{color: design.main_color}"
+                >
+                  <span
+                    v-for="(item, index) in results"
+                    class="mr-3"
+                    style="display: inline-flex"
+                  >
+                    <span class="mr-1">{{index+1}}.</span> {{item}}
+                  </span>
+                </div>
+              </div>
+
+              <div
+                class="wof__main__r"
+                v-if="!is_wheel_centered && !is_spin_btn_alone && !wheel_segment_name && !is_wheel_spinning && is_wheel_r_visible"
+              >
+                <h1
+                  class="wof__main__title"
+                  v-if="config.show_title && config.title"
+                >
+                  {{ config.title }}
+                </h1>
+                <p
+                  class="wof__main__desc"
+                  v-if="config.show_desc && config.description"
+                  v-html="config.description"
+                ></p>
+                <button
+                  @click="run()"
+                  class="wof__main__btn"
+                  v-if="config.show_start_button && !is_spin_btn_alone && !config.capture_leads"
+                  :style="getWheelStyles('spin-btn')"
+                >
+                  {{ (config.start_button) ? config.start_button :
+                  $t('app_wheel.btn_spin_default') }}
+                </button>
+
+                <div class="wof__main__form" v-if="config.capture_leads">
+                  <div class="form-group mb-2">
+                    <input
+                      type="text"
+                      name="first_name"
+                      :placeholder="$t('app_wheel.form_first_name')"
+                      class="form-control"
+                    />
+                  </div>
+                  <div class="form-group mb-2">
+                    <input
+                      type="text"
+                      name="first_name"
+                      :placeholder="$t('app_wheel.form_last_name')"
+                      class="form-control"
+                    />
+                  </div>
+                  <div class="form-group mb-2">
+                    <input
+                      type="text"
+                      name="first_name"
+                      :placeholder="$t('app_wheel.form_email')"
+                      class="form-control"
+                    />
+                  </div>
+                </div>
+
+                <button
+                  @click="run()"
+                  class="wof__main__btn"
+                  v-if="config.capture_leads"
+                  :style="getWheelStyles('spin-btn')"
+                >
+                  {{ (config.start_button) ? config.start_button :
+                  $t('app_wheel.btn_spin_default') }}
+                </button>
+              </div>
+
+              <div class="wof__main__options">
+                <div
+                  class="wof__main__options-item"
+                  @click.stop="toggleFullScreen()"
+                  :title="$t('app_wheel.tooltip_fullscreen')"
+                  data-toggle="tooltip"
+                >
+                  <i class="fa-solid fa-expand"></i>
+                  <span>{{ $t('buttons.fullscreen') }}</span>
+                </div>
+                <div class="wof__main__options-item d-none">
+                  <i class="far fa-fw fa-question-square"></i>
+                  <span>{{ $t('buttons.help') }}</span>
+                </div>
+                <!-- <div -->
+                <!--   class="wof__main__options-item hide-fs" -->
+                <!--   @click.stop="toggleWinners()" -->
+                <!--   :title="$t('app_wheel.tooltip_show_winners')" -->
+                <!--   data-toggle="tooltip" -->
+                <!-- > -->
+                <!--   <i class="fa-solid fa-trophy"></i> -->
+                <!--   <span>{{ $t('buttons.results') }}</span> -->
+                <!-- </div> -->
+                <div
+                  class="wof__main__options-item"
+                  @click.stop="resetPlayWheel()"
+                  :title="$t('app_wheel.tooltip_reset_wheel')"
+                  data-toggle="tooltip"
+                >
+                  <i class="fa-solid fa-rotate-left"></i>
+                </div>
+                <div
+                  class="wof__main__options-item hide-fs"
+                  @click.stop="toggleSound()"
+                  :title="$t('app_wheel.tooltip_toggle_sound')"
+                  data-toggle="tooltip"
+                >
+                  <i
+                    class="fa-solid fa-volume-high"
+                    v-if="config.play_sounds"
+                  ></i>
+                  <i class="fa-solid fa-volume-xmark" v-else></i>
+                  <span>{{ $t('buttons.volume') }}</span>
+                </div>
+                <div
+                  class="wof__main__options-item hide-fs"
+                  v-if="!is_wheel_play_only"
+                  @click.stop="onStopPlaying()"
+                  :title="$t('app_wheel.tooltip_close')"
+                  data-toggle="tooltip"
+                >
+                  <i class="fa-solid fa-xmark"></i>
+                </div>
+              </div>
+
+              <div class="color_palette-inapp" @click.stop="">
+                <div class="d-flex" style="flex-wrap: nowrap; overflow-x: auto">
+                  <div class="color_palette" v-for="theme in themes">
+                    <span
+                      v-for="color in theme.wheel_slices_color"
+                      @click.stop="useTheme(theme)"
+                      :style="{backgroundColor: color}"
+                    ></span>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Confettis -->
+              <canvas
+                id="jsccc"
+                style="
+                  position: fixed;
+                  width: 100%;
+                  height: 100%;
+                  top: 0px;
+                  left: 0px;
+                  z-index: 999999;
+                  pointer-events: none;
+                "
+              ></canvas>
+            </div>
+
+            <!-- Save Modal -->
+            <div class="modal dash" tabindex="-1" role="dialog" id="saveModal">
+              <div
+                class="modal-dialog modal-dialog-centered modal-sm"
+                role="document"
+              >
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <h5 class="modal-title _fw900">
+                      {{ $t('app_wheel.save_modal.title') }}
+                    </h5>
+                    <button
+                      type="button"
+                      class="close"
+                      data-dismiss="modal"
+                      aria-label="Close"
+                    >
+                      <i class="fal fa-times"></i>
+                    </button>
+                  </div>
+                  <div v-if="!saving" class="modal-body p-4">
+                    <div class="form-group mb-0">
+                      <label>{{ $t('labels.name') }}</label>
+                      <input
+                        v-model="save_form.name"
+                        type="text"
+                        class="form-control form-control-lg"
+                        :placeholder="$t('app_wheel.save_modal.placeholder_name')"
+                      />
+                    </div>
+                  </div>
+                  <div
+                    v-if="saving"
+                    class="modal-body py-5 d-flex justify-content-center"
+                  >
+                    <div class="loader"></div>
+                  </div>
+                  <!-- <div v-if="saved" class="modal-body p-5 text-center">
+                                <p class="text-muted">¡Copia el siguiente link para acceder a tu ruleta la próxima vez!</p>
+                                <div class="input-group input-group-lg js-input-copy">
+                                    <input type="text" class="form-control text-muted" style="font-size: 13px;" :value="'https://app-sorteos.com/wheel/' + savedWheel.hash">
+                                    <div class="input-group-append">
+                                        <button data-toggle="tooltip" data-placement="top" title="Copiar" class="btn btn-primary" type="button" style="font-size: 20px !important;" onclick="copyToClipboard(this)">
+                                            <i class="fas fa-clipboard"></i>
+                                        </button>
+                                    </div>
+                                </div>
+                            </div> -->
+                </div>
+              </div>
+            </div>
+            <!-- Share Modal -->
+            <div
+              class="modal dash"
+              tabindex="-1"
+              role="dialog"
+              id="wheelShareModal"
+            >
+              <div class="modal-dialog modal-dialog-centered" role="document">
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <h5 class="modal-title _fw900">
+                      {{ $t('app_wheel.share_modal.title') }}
+                    </h5>
+                    <button
+                      type="button"
+                      class="close"
+                      data-dismiss="modal"
+                      aria-label="Close"
+                    >
+                      <i class="fal fa-times"></i>
+                    </button>
+                  </div>
+                  <div
+                    class="modal-body p-4 text-center"
+                    v-if="savedWheel && savedWheel.id"
+                  >
+                    <a
+                      class="_fw700"
+                      :href="savedWheel.share_url"
+                      target="_blank"
+                      >{{ savedWheel.share_url.replace('http://', '') }}</a
+                    >
+                    <br /><br />
+                    <button
+                      class="btn btn-primary"
+                      @click="copyWheelLink($event)"
+                    >
+                      {{ $t('buttons.copy') }}
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <!-- Edit Entry Modal -->
+            <div
+              class="modal dash"
+              tabindex="-1"
+              role="dialog"
+              id="wheelPrizeModal"
+            >
+              <div
+                class="modal-dialog modal-sm modal-dialog-centered"
+                role="document"
+              >
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <h5 class="modal-title _fw900">{{ $t('buttons.edit') }}</h5>
+                    <button
+                      type="button"
+                      class="close"
+                      data-dismiss="modal"
+                      aria-label="Close"
+                    >
+                      <i class="fa-solid fa-xmark"></i>
+                    </button>
+                  </div>
+                  <div class="modal-body p-4" v-if="edit_entry_modal">
+                    <div class="form-group">
+                      <label for="">{{ $t('labels.name') }}</label>
+                      <input
+                        type="text"
+                        class="form-control"
+                        v-model="edit_entry_modal.text"
+                      />
+                    </div>
+                    <div class="form-group">
+                      <label for="">{{ $t('labels.chance') }}</label>
+                      <!-- <select class="form-control" @change="onEditEntryChanceUpdated($event)"> -->
+                      <select
+                        class="form-control custom-select"
+                        v-model="edit_entry_modal.chance"
+                      >
+                        <option value="-1">Auto</option>
+                        <option value="0">0%</option>
+                        <option
+                          value="1"
+                          :disabled="edit_entry_modal.max_chance_available < 1"
+                        >
+                          1%
+                        </option>
+                        <option
+                          value="3"
+                          :disabled="edit_entry_modal.max_chance_available < 3"
+                        >
+                          3%
+                        </option>
+                        <option
+                          value="5"
+                          :disabled="edit_entry_modal.max_chance_available < 5"
+                        >
+                          5%
+                        </option>
+                        <option
+                          value="10"
+                          :disabled="edit_entry_modal.max_chance_available < 10"
+                        >
+                          10%
+                        </option>
+                        <option
+                          value="15"
+                          :disabled="edit_entry_modal.max_chance_available < 15"
+                        >
+                          15%
+                        </option>
+                        <option
+                          value="20"
+                          :disabled="edit_entry_modal.max_chance_available < 20"
+                        >
+                          20%
+                        </option>
+                        <option
+                          value="25"
+                          :disabled="edit_entry_modal.max_chance_available < 25"
+                        >
+                          25%
+                        </option>
+                        <option
+                          value="30"
+                          :disabled="edit_entry_modal.max_chance_available < 30"
+                        >
+                          30%
+                        </option>
+                        <option
+                          value="40"
+                          :disabled="edit_entry_modal.max_chance_available < 40"
+                        >
+                          40%
+                        </option>
+                        <option
+                          value="50"
+                          :disabled="edit_entry_modal.max_chance_available < 50"
+                        >
+                          50%
+                        </option>
+                        <option
+                          value="60"
+                          :disabled="edit_entry_modal.max_chance_available < 60"
+                        >
+                          60%
+                        </option>
+                        <option
+                          value="70"
+                          :disabled="edit_entry_modal.max_chance_available < 70"
+                        >
+                          70%
+                        </option>
+                        <option
+                          value="75"
+                          :disabled="edit_entry_modal.max_chance_available < 75"
+                        >
+                          75%
+                        </option>
+                        <option
+                          value="80"
+                          :disabled="edit_entry_modal.max_chance_available < 80"
+                        >
+                          80%
+                        </option>
+                        <option
+                          value="90"
+                          :disabled="edit_entry_modal.max_chance_available < 90"
+                        >
+                          90%
+                        </option>
+                        <option
+                          value="99"
+                          :disabled="edit_entry_modal.max_chance_available < 99"
+                        >
+                          99%
+                        </option>
+                        <option
+                          value="100"
+                          :disabled="edit_entry_modal.max_chance_available < 100"
+                        >
+                          100%
+                        </option>
+                        <!-- <option value="auto" :selected="(edit_entry_modal.chance === -1) ? 'selected' : ''">Auto (6.7%)</option> -->
+                        <!-- <option value="custom" :selected="(edit_entry_modal.chance > 0) ? 'selected' : ''">Custom</option> -->
+                        <!-- <option value="none" :selected="(edit_entry_modal.chance === 0) ? 'selected' : ''">None (0%)</option> -->
+                      </select>
+
+                      <div
+                        class="text-danger small mt-2"
+                        v-if="parseInt(edit_entry_modal.chance) === 0"
+                      >
+                        {{ $t('app_wheel.label_prize_0_chance') }}
+                      </div>
+                    </div>
+                    <!-- <div class="custom-control custom-checkbox mt-4 form-group mb-0">
+                                    <input type="checkbox" id="uniqueNumbersCheck" class="custom-control-input">
+                                    <label for="uniqueNumbersCheck" class="custom-control-label">Custom Chance</label>
+                                </div> -->
+                    <!-- <div class="form-group">
+                                    <label for="">Color</label>
+                                    <input type="color" class="form-control" v-model="edit_entry_modal.color">
+                                </div> -->
+                    <div>
+                      <button
+                        class="btn btn-primary btn-lg"
+                        @click="onEditEntryApplyChanges()"
+                      >
+                        {{ $t('buttons.apply_changes') }}
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <script>
+        setTimeout(function () {
+          (stpdwrapper = window.stpdwrapper || []).push({});
+          // (function () {
+          // var size='160x600',
+          //     adunit = 'app-sorteos.com_160x600_sticky_right_desktop_DFP',
+          //     childNetworkId = '22370358227',
+          //     xmlhttp = new XMLHttpRequest();xmlhttp.onreadystatechange = function(){if(xmlhttp.readyState==4 && xmlhttp.status==200){var iframe=document.getElementById(adunit).contentWindow.document;iframe.open();iframe.write(xmlhttp.responseText);iframe.close();}};var child=childNetworkId.trim()?','+childNetworkId.trim():'';xmlhttp.open("GET", 'https://pubads.g.doubleclick.net/gampad/adx?iu=/147246189'+child+'/'+adunit+'&sz='+encodeURI(size)+'&t=Placement_type%3Dserving&'+Date.now(), true);xmlhttp.send();})();
+        }, 5000);
+      </script>
+    </div>
+
+    <!-- Start Mixpanel -->
+    <script type="text/javascript">
+      (function (f, b) {
+        if (!b.__SV) {
+          var e, g, i, h;
+          window.mixpanel = b;
+          b._i = [];
+          b.init = function (e, f, c) {
+            function g(a, d) {
+              var b = d.split(".");
+              2 == b.length && ((a = a[b[0]]), (d = b[1]));
+              a[d] = function () {
+                a.push([d].concat(Array.prototype.slice.call(arguments, 0)));
+              };
+            }
+
+            var a = b;
+            "undefined" !== typeof c ? (a = b[c] = []) : (c = "mixpanel");
+            a.people = a.people || [];
+            a.toString = function (a) {
+              var d = "mixpanel";
+              "mixpanel" !== c && (d += "." + c);
+              a || (d += " (stub)");
+              return d;
+            };
+            a.people.toString = function () {
+              return a.toString(1) + ".people (stub)";
+            };
+            i =
+              "disable time_event track track_pageview track_links track_forms track_with_groups add_group set_group remove_group register register_once alias unregister identify name_tag set_config reset opt_in_tracking opt_out_tracking has_opted_in_tracking has_opted_out_tracking clear_opt_in_out_tracking start_batch_senders people.set people.set_once people.unset people.increment people.append people.union people.track_charge people.clear_charges people.delete_user people.remove".split(
+                " ",
+              );
+            for (h = 0; h < i.length; h++) g(a, i[h]);
+            var j = "set set_once union unset remove delete".split(" ");
+            a.get_group = function () {
+              function b(c) {
+                d[c] = function () {
+                  call2_args = arguments;
+                  call2 = [c].concat(Array.prototype.slice.call(call2_args, 0));
+                  a.push([e, call2]);
+                };
+              }
+
+              for (
+                var d = {},
+                  e = ["get_group"].concat(
+                    Array.prototype.slice.call(arguments, 0),
+                  ),
+                  c = 0;
+                c < j.length;
+                c++
+              )
+                b(j[c]);
+              return d;
+            };
+            b._i.push([e, f, c]);
+          };
+          b.__SV = 1.2;
+          e = f.createElement("script");
+          e.type = "text/javascript";
+          e.async = !0;
+          g = f.getElementsByTagName("script")[0];
+          g.parentNode.insertBefore(e, g);
+        }
+      })(document, window.mixpanel || []);
+      mixpanel.init("d4277a45cee115114888f6e17552af75");
+    </script>
+    <!-- End Mixpanel -->
+
+    <script>
+      var __e = {};
+
+      __e["upgradeText1"] = "Tu post tiene <strong>{0}</strong> comentarios";
+      __e["upgradeText2"] =
+        "Puedes realizar sorteos en Instagram hasta <strong>{0}</strong> comentarios totalmente gratis. Desbloquea este sorteo y realízalo de inmediato por tan solo";
+
+      __e["ERROR_DUPLICATED_URL"] =
+        "La URL está duplicada, por favor elimínala.";
+      __e["ERROR_INVALID_URL"] = "La URL es inválida.";
+      __e["ERROR_NOT_FOUND"] = "No pudimos leer la URL";
+      __e["ERROR_COMMENTS_DISABLED"] =
+        "Esta publicación de Instagram tiene los comentarios deshabilitados, por favor actívalos para comenzar.";
+      __e["wheel_add_options"] = "Agrega al menos 2 opciones";
+      __e["copied"] = "¡Copiado!";
+      __e["copy"] = "Copiar";
+    </script>
+    <script>
+      var country = "CO";
+      var locale = "es";
+      var free_user_experiment_version = 0;
+      var free_limit = "1000000";
+      var hasError = window.location.href.indexOf("?error=") !== -1;
+      var hasErrorComments =
+        window.location.href.indexOf("?error=comments_limit") !== -1;
+      var hasErrorInfo =
+        window.location.href.indexOf("?error=invalid_info") !== -1;
+      var hasErrorCommentsDisabled =
+        window.location.href.indexOf("?error=comments_disabled") !== -1;
+
+      var SHARED_DATA = {
+        apps: [
+          {
+            type: "wheel",
+            icon: "fal fa-dharmachakra",
+            name: "Ruleta Aleatoria",
+            name_short: "Wheel",
+            desc: "\u00a1Gira la ruleta y escoge un ganador!",
+            category: "promotions",
+            recommended: true,
+            can_save_results: true,
+            is_top_app: true,
+          },
+        ],
+        links: {
+          wheel: "/es/apps/la-ruleta-decide",
+        },
+        user: null,
+        features: [],
+        locale: "es",
+      };
+
+      var SITE_URL = "https://app-sorteos.com/";
+      var signup_event_dispatched = 0;
+    </script>
+    <!-- Translations start -->
+    <script>
+      var I18N_Global_ES = {
+        labels: {
+          active: "Activo",
+          all: "Todos",
+          alternates: "Suplentes",
+          chance_of_win: "Chances de Ganar",
+          chance: "Chance",
+          column: "Columna",
+          columns: "Columnas",
+          all_columns_combined: "Todas las columnas combinadas",
+          coupon_code_value: "Código de Descuento",
+          coupon_code: "Cupón de Descuento",
+          date: "Fecha",
+          description: "Descripción",
+          desktop: "Computadora",
+          device: "Dispositivo",
+          email: "Email",
+          facebook_page: "Página de Facebook",
+          favorites: "Favoritos",
+          filter: "Filtrar",
+          followers: "seguidores",
+          giveaway_name: "Nombre del Sorteo",
+          great: "Genial",
+          help: "Ayuda",
+          high: "Alto",
+          inactive: "Inactivo",
+          instagram_account: "Cuenta de Instagram",
+          language: "Idioma",
+          lead: "Usuario",
+          link_url: "URL del Enlace",
+          live_streaming: "en vivo",
+          location: "Ubicación",
+          low: "Bajo",
+          medium: "Medio",
+          mobile: "Teléfono",
+          name: "Nombre",
+          names: "Nombres",
+          new: "Nuevo",
+          participants: "Participantes",
+          powered_by: "Generado con",
+          prize: "Premio",
+          probability: "Probabilidad",
+          profile: "Perfil",
+          promotion_end: "Fecha de Finalización",
+          promotion_start: "Fecha de Inicio",
+          quantity: "Cantidad",
+          reason: "Motivo",
+          replace_with: "Reemplazar por",
+          select: "Seleccionar",
+          selected: "Seleccionado",
+          soon: "Próximamente",
+          tablet: "Tablet",
+          text: "Texto",
+          title: "Titulo",
+          total: "Total",
+          tweet_url: "URL de tu Tweet",
+          twitter_tweet: "Tweet de Twitter",
+          type: "Tipo",
+          uniques: "Unicos",
+          units: "Cantidad",
+          value: "Valor",
+          video_url: "URL de tu Video",
+          wheel_label: "Texto en Ruleta",
+          winners: "Ganadores",
+          winning_chance: "Chances de Ganar",
+          write_your_text: "Escribe algo...",
+          youtube_video: "Video de Youtube",
+          half_day: "Medio Día",
+          one_day: "1 Día",
+          one_week: "1 Semana",
+          one_month: "1 Mes",
+          seconds: "Segundos",
+          of_the_page: "de la página",
+        },
+        buttons: {
+          add: "Agregar",
+          back: "Regresar",
+          cancel: "Cancelar",
+          continue: "Continuar",
+          create: "Crear",
+          create_now: "Crear ahora",
+          copy: "Copiar",
+          delete: "Eliminar",
+          download: "Descargar",
+          edit: "Editar",
+          enter_manually: "Ingresar manualmente",
+          generate: "Generar",
+          import: "Importar",
+          import_from_file: "Importar desde archivo",
+          preview: "Vista previa",
+          save_changes: "Guardar cambios",
+          start: "Comenzar",
+          clear: "Limpiar",
+          replace: "Reemplazar",
+          settings: "Opciones",
+          apply_changes: "Aplicar cambios",
+          copy: "Copiar",
+          save: "Guardar",
+          confirm: "Confirmar",
+          reject: "Rechazar",
+          share: "Compartir",
+          add_prize: "Agregar premio",
+          view_plans: "Ver Planes",
+          connect_instagram: "Conectar con Instagram",
+          connect_facebook: "Conectar con Facebook",
+          connect_twitter: "Conectar con Twitter",
+          disconnect: "Desconectar",
+          update: "Actualizar",
+          change: "Cambiar",
+          replace: "Reemplazar",
+          modify: "Modificar",
+          activate: "Activar",
+          deactivate: "Desactivar",
+          logout: "Desconectar",
+          reauthorize: "Reautorizar",
+          load_more: "Cargar más",
+          upload: "Subir",
+          upgrade_now: "Actualizar Plan",
+          create_account: "Crear cuenta",
+          qr_code: "Código QR",
+          duplicate: "Duplicar",
+          print: "Imprimir",
+          understood: "Entendido",
+          open_link: "Abrir Link",
+          add_image: "Agregar imagen",
+          remove_image: "Eliminar imagen",
+          change_image: "Cambiar imagen",
+          next_page: "Pag. Siguiente",
+          prev_page: "Pag. Anterior",
+        },
+        pricing: {
+          btn_select_plan: "Seleccionar Plan",
+          btn_start_now: "Comenzar Ahora",
+          btn_current_plan: "Plan Actual",
+          pay_monthly: "Pagar mensual",
+          pay_yearly: "Pagar anual",
+          get_2_free_months: "Obtén 2 meses GRATIS :)",
+          get_2_free_months: "Ahorra hasta un 20% con el pago anual",
+          get_2_free_months: "HASTA 22% OFF",
+          billed_monthly: "Facturado mensual",
+          billed_yearly: "Facturado a ${price}/año",
+          billed_free: "Es gratis",
+          most_popular: "Más Popular",
+          up_to_x_comments: "Hasta {count} comentarios",
+          up_to_x_impressions: "Hasta {count} impresiones",
+          unlimited: "Sin límites",
+          coupon_banner:
+            "¡Tienes un {discount}% OFF adicional en todos nuestros planes!",
+          coupon_banner_anual:
+            "¡Tienes un {discount}% OFF adicional en nuestros planes anuales!",
+          additional_discount: "Extra {discount}% OFF",
+          giveaways_in: "Sorteos en",
+          promotions: "Promociones",
+          x_impressions: "{count} impresiones en:",
+          active_promotions: "{count} promociones activas y",
+          unlimited_comments: "Sin límites de comentarios",
+          error_contact_support:
+            "Parece que ya tienes un plan contratado. No es posible realizar el cambio de forma automática.<br/><br/> Te contáctaremos por email a <strong>[{email}]</strong> para ayudarte a obtener el descuento. <br><br> Si no tienes email asociado, o no utilizas este email, por favor contáctate con Soporte.",
+        },
+        apps: {
+          instagram: "Sorteos en Instagram",
+          youtube: "Sorteos en Youtube",
+          tiktok: "Sorteos en Tiktok",
+          twitter: "Sorteos en Twitter",
+          facebook: "Sorteos en Facebook",
+          list: "Sorteo de Listados",
+          wheel_of_prizes: "Ruleta de Premios",
+          combined_giveaways: "Sorteos Multi-Red",
+          list_giveaway: "Sorteo de Listado",
+          quiz: "Trivias",
+          secret_santa: "Amigo Secreto",
+        },
+        giveaway_page: {
+          certificate_page: "Página de ganadores",
+          code: "Código",
+          confirm_delete:
+            "¿Está seguro de que desea eliminar este Sorteo? <br/> Esta acción no se puede deshacer.",
+          created_on: "Creado en",
+          default_title: "Sorteo sin título",
+          details_title: "Detalles del sorteo",
+          download_image: "Descargar imagen",
+          download_video: "Descargar video",
+          download_video_error_message:
+            "La descarga del video no se ha completado, si el error continua por favor reportalo a nuestro equipo",
+          download_video_upgrade_message:
+            "La descarga de la video animación esta disponible sólo para Planes premium. Subscríbete a uno de nuestros planes y accede a todas las funcionalidades de AppSorteos",
+          qr_code: "Código QR",
+          resources_title: "Recursos",
+          share_subtitle:
+            "Comparte el siguiente enlace con tus seguidores para ver la página pública de ganadores",
+          share_title: "Compartir",
+          story_animation: "Animación para Story (.mp4)",
+          story_certificate: "Certificado para Story (.jpg)",
+          video_download_not:
+            "La descarga de video no está disponible en su dispositivo, abre esta página en una computadora.",
+          replace_winner_title: "Reemplazar ganador",
+          replace_winner_text:
+            "Quieres reemplazar al ganador <strong>{name}</strong> por un suplente?",
+          replace_winner_warn: "Será visible en el ceriticado de validez",
+          anounce_winners_title: "Anuncia los ganadores",
+          anounce_winners_desc: "Anuncia los ganadores",
+          certificate_validity_title: "Certificado de Validez",
+          results_title: "Resultados",
+          publish_a_comment: "Publica un comentario",
+          publish_a_comment_desc:
+            "Comenta en el post del sorteo mencionando a los ganadores",
+          publish_a_comment_btn: "Comentar",
+          publish_comment_modal: {
+            title: "Comunica los ganadores",
+            text: "Este comentario se publicará en el post del concurso. Menciona a los ganadores y diles como reclamar su premio.",
+            text_copy_ig:
+              "Conecta con Facebook para publicar el comentario de forma automática, o copia y pega el texto manualmente",
+            text_copy: "Copia y pega el comentario en tus redes sociales",
+            publish_btn: "Publicar",
+            comment_text_1_s:
+              "— SORTEO FINALIZADO — Los ganadores son: {usernames}",
+            comment_text_2_s:
+              "\n\n Certificado por @app_sorteos_ok (Código {code})",
+            published_title: "¡Comentario enviado!",
+            published_text:
+              "El comentario anunciando los ganadores ya fue publicado en el post del sorteo.",
+            view_comment_btn: "Ver comentario",
+          },
+        },
+        media_gallery: {
+          title: "Seleccionar Imagen",
+          tab_upload: "Subir",
+          tab_patterns: "Patrones",
+          tab_gradients: "Gradientes",
+          tab_search: "Buscar",
+          search_photos_placeholder: "Buscar imágenes",
+        },
+        status: {
+          accepted: "Aceptado",
+          action_required: "Acción Requerida",
+          active: "Activo",
+          finalized: "Finalizado",
+          inactive: "Inactivo",
+          paused: "Pausada",
+          pending: "Pendiente",
+          rejected: "Rechazado",
+        },
+        dashboard: {
+          type_all: "Todos",
+          filter_type: "Tipo",
+          filter_date: "Fecha",
+          filter_date_3mo: "Últimos 3 meses",
+          filter_date_6mo: "Últimos 6 meses",
+          filter_date_1yr: "Últimos 12 meses",
+          filter_date_all: "Cualquier momento",
+          filters_no_results_title: "Todavía no hay promociones.",
+          filters_no_results_text:
+            "Prueba con otros filtros o comienza ahora creando un nuevo sorteo o promoción para tu marca o negocio.",
+          label_leads: "usuarios",
+          label_comments: "comentarios",
+          label_questions: "preguntas",
+          promotions_tab: "Promociones",
+          giveaways_tab: "Sorteos",
+          giveaways_empty_title: "Crea tu primer Sorteo",
+          giveaways_empty_text:
+            "Crea sorteos para Instagram, Facebook, Tiktok, Twitter y más",
+          wheels_tab: "Ruletas",
+          wheels_empty_title: "Crea tu primera Ruleta",
+          wheels_empty_text:
+            "Haz girar una Ruleta personalizada para tomar decisiones, juegos, sorteos y más",
+          trivias_tab: "Trivias",
+          trivias_empty_title: "Crea tu primera Trivia",
+          trivias_empty_text:
+            "Crea divertidas Trivias (preguntas y respuestas) de forma fácil para compartir con otros",
+          type: "Tipo",
+          date: "Fecha",
+          status: "Estado",
+          title: "Título",
+          participants: "Participantes",
+          view_results: "Resultados",
+          confirm_delete:
+            "¿Estás seguro? <br/> Esta acción no se puede deshacer.",
+          confirm_delete_giveaway:
+            "¿Realmente quieres eliminar este Sorteo? <br/> Esta acción no se puede deshacer.",
+          confirm_delete_wheel:
+            "¿Realmente quieres eliminar esta Ruleta? <br/> Esta acción no se puede deshacer.",
+          confirm_delete_trivia:
+            "¿Realmente quieres eliminar esta Trivia? <br/> Esta acción no se puede deshacer.",
+          confirm_duplicate_prom_title: "Duplicar promoción",
+        },
+        file_uploader: {
+          select_or_drop: "Selecciona o arrastra un archivo",
+          accepted_ext: "Archivos aceptados: {files}",
+        },
+        random_picker: {
+          title: "Titulo",
+          column: "Columna",
+          main_field: "Campo principal",
+          main_field_help:
+            "Este campo será usado para detectar participantes únicos, no visible",
+          display_field: "Campo de visualización",
+          display_field_help:
+            "Este campo será usado para mostrar los participantes, visible",
+          file_headers: "Cabeceras de archivo",
+          file_headers_label: "Excluir primera linea",
+          headers: "Cabeceras",
+          entrants: "Participantes",
+          file_delimiter: "Columnas",
+          file_delimiter_label: "Columns are delimited by comma",
+          import_file_title: "Importar de archivo",
+          import_file_text:
+            "Importa los participantes desde un fichero .csv o .txt. Luego de importar, podrás escoger que columna utilizar para realizar el sorteo.",
+          import_manually_title: "Ingresa los participantes",
+          edit_giveaway: "Editar Concurso",
+          readed_x_lines: "Hemos detectado {n} lineas desde tu archivo",
+          feature_1: "Sin publicidad",
+          feature_2: "Lista de Bloqueo",
+          feature_3: "Video Animación (mp4)",
+          feature_4: "Sin límite máximo",
+          file_config_title: "Opciones de archivo",
+          error_invalid_title: "Ingresa un título válido",
+          error_invalid_entrants: "Ingresa más participantes",
+          confirm_save:
+            "La lista de participantes no podrá editarse luego. Por favor, verifica que la lista de participantes sea correcta antes de continuar",
+          importing_entrants: "Importando participantes",
+          redirecting: "Redirigiendo..",
+          upgrade_banner_text:
+            "Realiza sorteos ilimitados con uno de nuestros Planes",
+        },
+        instagram: {
+          alert_extension_title: "Instalar en PC",
+          alert_extension_message:
+            'Las extensiones para Google Chrome no pueden ser instaladas en dispositivos moviles. Para comenzar, instala la extensión de AppSorteos desde una computadora. <br/><br/>Para realizar un sorteo desde tu celular, puedes <a href="/es/apps/sorteo-instagram">conectar una cuenta Instagram Empresa/Creador</a>',
+        },
+        random_groups: {
+          team: "equipo",
+          teams: "equipos",
+          generated_by: "Generados aleatoriamente por",
+          btn_generate: "Generar equipos",
+          btn_generate_new: "Generar nuevos equipos",
+          input_placeholder: "Copa del Mundo Qatar 2022",
+          textarea_placeholder:
+            "Cada participante debe estar en una nueva linea",
+          participants_slash_teams: "participantes/equipo",
+          generate_by_participants: "Participantes por equipo",
+          generate_by_teams: "Cantidad de equipos",
+          error_group_leaders:
+            "La cantidad de líderes de grupo debe ser igual a la cantidad de equipos a generar",
+          group_leaders_help:
+            "Agrega un * para indicar líderes de grupo. *Lider",
+          copy_for_excel: "Copiar para Excel",
+          default_title: "Sorteo de Equipos",
+          label_names: "Ingresa los participantes",
+          how_to_split: "Cómo dividir",
+          error_no_title: "Agrega un título para guardar y compartir",
+          printable_note:
+            "Equipos generados aleatoriamente por app-sorteos.com",
+        },
+        random_numbers: {
+          label_q_results: "Números a generar",
+          label_min_number: "Número mínimo",
+          label_max_number: "Número máximo",
+          btn_generate: "Generar números",
+          btn_generate_new: "Generar nuevos números",
+          input_placeholder: "Sorteo de Empresa 2021!",
+          label_unique_numbers: "Números únicos (sin repetir)",
+          error_min: "El valor mínimo no puede superar al valor máximo",
+          error_results_count:
+            "La cantidad de números a obtener no puede ser mayor al máximo de números",
+          error_no_title: "Ingresa un nombre para tu Sorteo",
+          btn_save_results: "Guardar resultados",
+        },
+        trivia: {
+          start: "Comenzar",
+          questions: "Preguntas",
+          question: "Pregunta",
+          answers: "Respuestas",
+          add_answer: "Agregar respuesta",
+          add_question: "Agregar pregunta",
+          add_modal_title: "Nueva Pregunta",
+          edit_modal_title: "Editar Pregunta",
+          no_questions: "Crea tu primera pregunta",
+          add_first_question: "Agrega tu primera pregunta",
+          mark_as_correct: "Respuesta correcta",
+          question_placeholder: "Escribe una pregunta",
+          title_placeholder: "Nombre de la trivia",
+          answer_placeholder: "Escribe una respuesta",
+          touch_screen:
+            "Toca la pantalla para comenzar y avanzar entre preguntas",
+          press_space_bar:
+            "Presiona la barra espaciadora para comenzar y avanzar entre preguntas",
+          question_no_options: "Preguntas sin opciones",
+          error_no_question: "Escribe una pregunta",
+          error_no_correct_question: "Marca la respuesta correcta",
+          label_randomize: "Mezclar preguntas al iniciar",
+          label_sounds: "Reproducir música de fondo",
+          label_themes: "Temas & Colores",
+          question_added: "¡Pregunta añadida exitosamente!",
+          confirm_delete_question: "¿Eliminar esta pregunta?",
+        },
+        wheel: {
+          edit_colors: "Editar Colores",
+          palettes_modal_title: "Colores",
+          palettes_default: "Paletas de colores",
+          confirm_delete:
+            "¿Está seguro de que desea eliminar esta Ruleta? <br/> Esta acción no se puede deshacer.",
+        },
+        upgrade_modal: {
+          title: "Haz superado el límite!",
+          your_post_has: "Tu post tiene <b>{count}</b> comentarios",
+          text_twitter_rts:
+            "Puedes realizar sorteos en Twitter hasta <b>{count}</b> RT's totalmente gratis. Desbloquea éste sorteo y realízalo de inmediato por tan sólo",
+        },
+        notifications: {
+          success_login: "Tu sesión está activa",
+          success_signup: "Tu cuenta ha sido creada",
+          limit_reach_use_file:
+            "Demasiadas Sube un archivo con más de 20000 lineas",
+          giveaway_updated: "Concurso actualizado",
+          something_wrong: "Se produjo un error, intenta nuevamente",
+          added_fav: "Guardado en tus favoritos",
+          removed_fav: "Eliminado de tus favoritos",
+          copied_to_clipboard: "Copiado!",
+          saved_changes: "Cambios guardados",
+          promotion_deleted: "Promoción eliminada",
+          giveaway_deleted: "Sorteo eliminado correctamente",
+          wheel_deleted: "Ruleta eliminada correctamente",
+          trivia_deleted: "Trivia eliminada correctamente",
+        },
+        validations: {
+          invalid_url_title: "Link no válido",
+          invalid_url_body:
+            "No hemos podido reconocer el link que has ingresado como válido, aseguráte que tenga este formato",
+          invalid_url_fb:
+            "Por favor, verifica que el enlace que ingresado pertenece a la Página de Facebook que has seleccionado",
+          tiktok_login_error:
+            "Parece que no has iniciado sesión en tu cuenta. Por favor, Inicia sesión en tu cuenta de Tiktok en la web y vuelve a intentarlo.",
+          tiktok_login_error_cta: "Continuar en Tiktok.com",
+          tiktok_video_info_error:
+            "Parece que hubo un error al cargar tu video, vuelve a intentarlo. Si el error continua, contácta a nuestro equipo de Soporte.",
+          tiktok_comments_disabled:
+            "Este video tiene los comentarios desactivados. Actívalos e inténtalo nuevamente",
+          tiktok_no_comments:
+            "Este video no tiene comentarios aún. Regresa cuando tus seguidores han comentado y quieras obtener los ganadores",
+          available_on_desktop_title: "Disponible en PC",
+          available_on_desktop_text:
+            "Las extensiones para Google Chrome no pueden ser instaladas en dispositivos moviles. Para comenzar, instala la extensión de AppSorteos desde una computadora.",
+          youtube_no_comments:
+            "Este video no tiene comentarios aún. Regresa cuando tus seguidores han comentado y quieras obtener los ganadores",
+          youtube_live_error:
+            "No es posible obtener los comentarios de un Live Streaming de Youtube aún, sólo de videos publicados en tu canal.",
+          no_comments:
+            "Este post no tiene comentarios y no se puede agregar al sorteo",
+          comments_disabled:
+            "Este post tiene los comentarios desactivados, actívalos para continuar.",
+          input_email: "Por favor, introduce un email válido.",
+          twitter_no_retweets_title: "Este tweet no tiene retweets",
+          twitter_no_retweets:
+            "Este tweet aún no tiene retweets, por favor inténtalo mas tarde.",
+          twitter_no_likes:
+            "Este tweet aún no tiene likes, por favor inténtalo mas tarde.",
+          twitter_no_post_owner:
+            "Parece que no eres el autor de este tweet/post. Conecta con la cuenta correcta para continuar.",
+          post_already_added: "Ya has agregado este post",
+        },
+        chrome_extesion: {
+          title: "Instala la extension de AppSorteos para tu navegador",
+          step_1_title: "Instala la extension de AppSorteos",
+          step_1_button: "Instalar extensión",
+          step_2_title: "Ingresa a tu cuenta de Instagram",
+          step_2_button: "Ir a Instagram",
+          footer_message:
+            "Si tienes una cuenta de Instagram Empresa, puedes saltar este paso.",
+          more_info: "Saber más.",
+          ig_business_title: "Vincular cuenta de Instagram Empresa",
+          ig_business_connect: "Conectar con Instagram",
+          ig_business_text:
+            "Si tienes una cuenta de Instagram Empresa/Creador, puedes vincular de forma directa. Asegúrate que tu cuenta <b>este vinculada a una Página de Facebook</b>, y acepta todos los permisos solicitados",
+          step_2_button_tiktok: "Ir a Tiktok",
+          step_2_title_tiktok: "Ingresa a tu cuenta de Tiktok",
+          step_3_button_tiktok: "Continuar",
+          footer_message_tiktok:
+            "Nunca te pediremos los datos de tu cuenta, este proceso es 100% seguro.",
+        },
+        flip_coins: {
+          heads: "Cara",
+          tails: "Cruz",
+          flip_btn: "Lanza la moneda!",
+          flip_text: "(toca la pantalla o presiona la barra espaciadora)",
+        },
+        promotions: {
+          tab_config: "Configuración",
+          tab_design: "Diseño",
+          tab_stats: "Resumen",
+          tab_customize: "Personalizar",
+          tab_slices: "Ruleta",
+          tab_prizes: "Premios",
+          tab_results: "Usuarios",
+          tab_winners: "Ganadores",
+          tab_share: "Compartir",
+          tab_integrations: "Integraciones",
+          tab_quiz: "Quiz",
+          stats_prizes_awarded: "Premios entregados",
+          stats_pageviews: "Visitas",
+          stats_collected_leads: "Usuarios registrados",
+          stats_wheel_spins: "Giros de ruleta",
+          stats_quiz_completed: "Quiz completados",
+          start_on: "Comienza en",
+          ends_on: "Finaliza en",
+          finalized: "Finalizado",
+          iframe_page_form: "Formulario",
+          iframe_page_winner: "Página Ganadores",
+          iframe_page_looser: "Página Perdedores",
+          iframe_select_prize: "-- Selecciona un Premio --",
+          iframe_page_welcome: "Página de Bienvenida",
+          iframe_page_questions: "Página de Preguntas",
+          iframe_page_final: "Página Final",
+          iframe_page_final_fail: "Página Final (Sin Éxito)",
+          no_leads_title: "No hay registro de participaciones aún",
+          no_leads_desc:
+            "Tu promoción está lista para ser publicada, compártela con el mundo!",
+          no_slices_title: "Aún no se agregaron segmentos",
+          no_slices_desc:
+            "Agrega hasta 12 opciones para tu Ruleta. Pueden ser un código de cupón (o simplemente texto), un enlace o simplemente una opción vacía (sin premio)",
+          no_winners_title: "No hay ganadores aún",
+          no_winners_desc:
+            "No se ha entregado ningún premio aún, comparte tu promoción!",
+          no_winners_form_title: "Espera un momento",
+          no_winners_form_desc:
+            "Para elegir a los ganadores, la promoción debe finalizar y los premios deben estar configurados",
+          no_prizes_title: "No hay premios aún",
+          no_prizes_desc:
+            "Crea los premios (y cantididades) que entregarás en tu promoción",
+          add_prize_modal_title: "Crear nuevo Premio",
+          edit_prize_modal_title: "Editar Premio",
+          prize_modal_text_on_slice: "Texto en ruleta",
+          slices_title: "Opciones de Ruleta",
+          winners_title: "Ganadores",
+          leads_title: "Usuarios",
+          prizes_title: "Premios",
+          design_title: "Diseño",
+          design_preview_title: "Vista Previa",
+          design_main_image: "Imagen Principal",
+          design_background_color: "Color de Fondo",
+          design_container_color: "Color de Contenedor",
+          design_text_color: "Color de Texto",
+          design_action_color: "Botones & Enlaces",
+          design_wheel_border_color: "Color de Ruleta",
+          design_wheel_dots_color: "Color de Puntos",
+          design_wheel_pointer_color: "Color de Puntero",
+          design_wheel_slice_text_color: "Color de Texto",
+          design_wheel_slices_color: "Color de Segmentos",
+          design_section_wheel: "Ruleta",
+          design_section_content: "Página & Textos",
+          design_themes_title: "Plantillas",
+          design_wheel_line_size: "Lineas",
+          design_border_radius: "Bordes Redondeados",
+          integrations_api_title: "Integraciones de API",
+          integrations_api_desc:
+            "Permite la integración directa con más de 1,000 aplicaciones y proveedores de servicios a través de nuestro socio de integración, Zapier.",
+          integrations_zapier_title:
+            "Envía automáticamente leads a tu CRM con Zapier",
+          integrations_zapier_desc:
+            "Si deseas enviar automáticamente correos electrónicos a leads recopilados sin necesidad de exportar manualmente a CSV e importarlos en tu proveedor de correo electrónico favorito, entonces esto es para ti.",
+          integrations_api_ley: "Esta es tu clave de API",
+          integrations_webhook_title: "Webhooks",
+          integrations_webhook_desc:
+            "Con nuestra API Webhooks, puedes enviar cada lead directamente a cualquier URL o aplicación web compatible, al instante.",
+          integrations_add_webhook:
+            "Notifica a servicios externos cuando obtengas un nuevo lead. Obtenga más información sobre los webhooks aquí.",
+          integrations_btn_add_webhook: "Agrega un Webhook",
+          integrations_add_webhook_desc: "Enviaremos tu webhook a esta URL",
+          integrations_webhook_sent: "Webhook enviado con éxito",
+          integrations_webhook_sent_fail:
+            "No se puedo enviar, verifica que el endpoint devuelva HTTP 200",
+          integrations_your_webhook: "Tu Webhook",
+          integrations_send_test_event: "Probar Webhook",
+          integrations_webhook_active:
+            "El webhook está activo. Los nuevos leads se enviarán automáticamente a esta URL.",
+          integrations_webhook_inactive:
+            "El webhook está inactivo. No se están enviando leads en este momento.",
+          modal_preview_email_title: "Vista Previa",
+          modal_test_allowed_emails_title: "Prueba un Email",
+          modal_test_allowed_emails_label: "Ingresa un email",
+          modal_test_allowed_emails_btn: "Verificar",
+          modal_test_allowed_emails_allowed: "Este email habilitado",
+          modal_test_allowed_emails_not_allowed: "Este email no habilitado",
+          modal_test_allowed_emails_note:
+            "Si has realizado cambios la lista, guarda los cambios primero.",
+          wheel_slice_empty: "Sin Premio",
+          wheel_slice_text: "Premio",
+          wheel_slice_coupon: "Cupón",
+          wheel_slice_link: "Enlace",
+          slices_btn_configure: "Configura la Ruleta",
+          wheel_no_winners_title: "No hay ganadores aún",
+          wheel_no_winners_desc:
+            "No se han entregado premios aún! Comparte tu promoción",
+          wheel_looser_text_1: "Sin Suerte",
+          wheel_looser_text_2: "Casi!",
+          wheel_looser_text_3: "Sin Premio",
+          wheel_looser_text_4: "Vacío",
+          share_title: "Comparte tu promoción",
+          share_desc:
+            "Esta es la forma más fácil de lanzar una promoción — simplemente comparte este enlace con tu audiencia.",
+          embed_title: "Insertar en un sitio web",
+          embed_desc:
+            "Agrega un código en tu sitio para mostrar la promoción. Escoge entre distintos formatos y formas de lanzamiento.",
+          share_link_title: "Comparte el link de tu promoción",
+          share_link_desc: "Obtén el link o compártelo en las redes sociales",
+          share_install_code_title: "Instalar el código",
+          share_install_code_desc:
+            "Coloca este código dentro de la etiqueta <strong>&lt;head&gt;</strong> o <strong>&lt;body&gt;</strong> en cada página donde desees ejecutar esta promoción.",
+          share_embed_title: "Opciones de incrustación",
+          share_embed_desc:
+            "¡Elige cómo y cuándo deseas mostrar la promoción en tu sitio web!",
+          share_confirm_reset_cookies_title: "Restablecer cookies",
+          share_confirm_reset_cookies_text:
+            "Al restablecer las cookies, la promoción se mostrará nuevamente a todos los visitantes de tu página, como un nuevo comienzo.",
+          share_confirm_reset_cookies_done: "Se han restablecido las cookies",
+          share_cookies_last_reset_day:
+            "Las cookies se restablecieron el: {date}",
+          config_winning_change_help:
+            "Que chances tienen los usuarios de ganar un premio? Si quieres que siempre ganen (recomendado), utiliza 100%.",
+          config_language_help: "El idioma utilizado en tu página de promoción",
+          export_csv: "Exportar CSV",
+          entryform_pick_winners_title: "Escoger Ganadores",
+          entryform_pick_winners_desc:
+            "¡Ya estamos listos para elegir a los ganadores de la promoción! Hagámoslo",
+          btn_pick_winners: "Pick Winners",
+          btn_check_dates: "Check dates",
+          btn_configure_prizes: "Configure prizes",
+          btn_preview: "Vista Previa",
+          btn_live: "Publicar",
+          btn_set_color: "Editar Color",
+          btn_automatic_color: "Auto Detect",
+          drawer_create_prize_title: "Crear Premio",
+          drawer_edit_prize_title: "Editar Premio",
+          drawer_lead_title: "Usuario",
+          delete_prize_confirmation_text:
+            "Estás por eliminar <b>{name}</b>. Esta acción no se podrá revertir.",
+          delete_prize_error_winners:
+            "Este premio no puede eliminarse porque ya tiene ganadores. Puedes marcarlo como desactivado, y ya no será visible",
+          delete_lead_title: "Estás a punto de eliminar 1 usuario",
+          delete_lead_confirmation_text:
+            "Esta acción no se podrá revertir.<br /> Las estadísticas de uso no se modificarán.",
+          status_active: "Activa",
+          status_paused: "Pausada",
+          status_quota_exceeded: "Límite Excedido",
+          label_table_lead: "Usuario",
+          label_table_prize: "Premio",
+          label_table_voucher: "Voucher",
+          label_table_date: "Fecha",
+          value_frecuency_disabled: "Desactivado",
+          value_max_entries_type_ip_only: "Sólo IP",
+          value_max_entries_type_ip_device: "Navegador / IP",
+          value_custom_field_type_text: "Texto",
+          value_custom_field_type_number: "Número",
+          label_name: "Nombre",
+          label_language: "Idioma",
+          label_language_help: "Idioma usado en la página de tu promoción",
+          label_title: "Título",
+          label_description: "Descripción",
+          label_status: "Estado",
+          label_show_terms_check: "Casilla de verificación",
+          label_show_terms_check_default:
+            "Acepto los términos y condiciones de la promoción",
+          label_show_email: "Email",
+          label_show_firstname: "Nombre",
+          label_show_lastname: "Apellido",
+          label_show_fullname: "Nombre Completo",
+          label_show_phone: "Teléfono",
+          label_frecuency_by_ip: "Limitar por Dispositivos",
+          label_frecuency_by_ip_help:
+            "Aplica restricciones de registros en un mismo dispositivo (laptop, smartphone) o dirección de IP",
+          label_allowed_emails: "Emails permitidos",
+          label_allowed_emails_help:
+            "Limita el registro de participantes a ún conjunto de emails habilitados. Ingresa un email debajo del otro.",
+          label_submit_button: "Botón Comenzar",
+          label_terms_url: "Url",
+          label_prizes: "Premios",
+          label_max_entries_by_ip: "Participaciones Max.",
+          label_max_entries_by_ip_frecuency: "Frecuencia de participación",
+          label_remove_watermark: "Eliminar marca de agua",
+          label_max_entries_by_user: "Participaciones máximas",
+          label_max_entries_by_user_help:
+            "¿Cuantas veces puede participar un mismo usuario (email)?",
+          label_limit_rewards_probability: "Limitar chances",
+          label_limit_rewards_quantities: "Limitar cantidades",
+          label_rewards_table_label: "Nombre",
+          label_rewards_table_quantity: "Cantidad",
+          label_rewards_table_chance: "Chance",
+          label_unlimited: "Ilimitado",
+          label_automatic: "Automático",
+          label_wheel_image: "Imagen de Ruleta",
+          label_wheel_image_help: "Tamaño recomendado (200 x 200px)",
+          label_logo_image: "Logo",
+          label_logo_image_help: "Tamaño recomendado (380 x 80px)",
+          label_background_image: "Imagen de Fondo",
+          label_background_image_help: "Tamaño recomendado (1920 x 1080px)",
+          label_page_background_image_opacity: "Transparencia",
+          label_show_city: "Ciudad",
+          label_show_zipcode: "Código Postal",
+          label_emails_send_emails: "Enviar emails",
+          label_emails_send_emails_help:
+            "Enviar un email automático al usuario luego de obtener un premio",
+          label_emails_from_name: "Remitente",
+          label_emails_reply_to: "Responder a",
+          label_emails_subject: "Asunto",
+          label_emails_logo: "Logo",
+          label_emails_logo_help: "Tamaño recomendado (380 x 80px)",
+          label_emails_heading: "Primera Linea",
+          label_emails_boby: "Texto Principal",
+          label_preview_email: "Previsualizar Email",
+          label_custom_field: "Campo Personalizado",
+          label_show_share_buttons: "Mostrar botones para compartir",
+          label_limit_total: "Libre (sin restricciones)",
+          label_limit_once_an_hour: "Por Hora",
+          label_limit_once_a_day: "Diario",
+          label_limit_once_a_week: "Semanal",
+          label_limit_once_a_month: "Mensual",
+          label_reset_wheel_after_game: "Reiniciar juego automáticamente",
+          label_reset_wheel_after_game_desc:
+            "El juego se reiniciará automáticamente después de 20 segundos en caso de pérdida",
+          label_launch_method: "Método de lanzamiento",
+          label_cookie_expiration: "Mostrarlo al mismo usuario",
+          label_cookie_reset: "Mostrarlo a todos nuevamente",
+          label_embed_cookie_365: "Mostrar solo una vez",
+          label_embed_cookie_90: "Una vez cada 90 días",
+          label_embed_cookie_30: "Una vez al mes",
+          label_embed_cookie_7: "Una vez a la semana",
+          label_embed_cookie_1: "Una vez al día",
+          label_embed_cookie_0: "Siempre",
+          label_enable_form: "Formulario de Registro",
+          label_enable_form_desc:
+            "¿Deseas que los participantes llenen un formulario antes de jugar?",
+          label_quiz_shuffle_questions: "Mezclar preguntas al inicio",
+          label_quiz_shuffle_answers: "Mezclar respuestas al inicio",
+          label_quiz_show_questions_numbers: "Mostrar número de preguntas",
+          label_quiz_answers_feedback:
+            "Mostrar retroalimentación de respuestas",
+          label_quiz_answers_feedback_0: "No mostrar nada",
+          label_quiz_answers_feedback_1: "Solo la respuesta seleccionada",
+          label_quiz_answers_feedback_2:
+            "Respuesta seleccionada y respuesta correcta",
+          label_quiz_question_time_limit: "Límite de tiempo por pregunta",
+          label_quiz_question_time_limit_0: "Sin límite de tiempo",
+          label_quiz_show_answer_index: "Mostrar número/letra de respuesta",
+          label_quiz_show_answer_index_0: "Sin indicador",
+          label_quiz_show_answer_index_1: "Letras (A, B, C, D)",
+          label_quiz_show_answer_index_2: "Números (1, 2, 3, 4)",
+          label_quiz_pass_mark: "Nota de aprobación",
+          label_quiz_pass_mark_0: "Sin nota de aprobación",
+          label_quiz_pass_mark_help:
+            "Personaliza las pantallas de éxito y fracaso en los siguientes pasos.",
+          label_start_button: "Botón de Inicio",
+          label_quiz_message: "Mensaje",
+          label_quiz_message_help:
+            "Utiliza el código corto [score] para mostrar la puntuación en el mensaje",
+          label_quiz_successful_btn: "Botón / Redirección",
+          label_quiz_successful_btn_no: "Sin botón",
+          label_quiz_successful_btn_retry: "Botón de Reintentar",
+          label_quiz_successful_btn_link: "Redirección de enlace personalizado",
+          label_quiz_successful_btn_link_text: "Texto del Botón",
+          label_quiz_successful_btn_link_url: "Enlace del Botón",
+          label_quiz_show_score: "Mostrar puntuación del cuestionario",
+          label_quiz_show_score_no: "No mostrar resultado",
+          label_quiz_show_score_percent:
+            "Mostrar como porcentaje (por ejemplo, 92%)",
+          label_quiz_show_score_points:
+            "Mostrar como puntuación (por ejemplo, 10/13)",
+          label_design_button_style: "Estilo de Botón",
+          label_design_button_style_solid: "Sólido",
+          label_design_button_style_outline: "Contorno",
+          quiz_questions_title: "Preguntas del Cuestionario",
+          quiz_design_title: "Diseño y Colores",
+          quiz_general_settings_title: "Configuración General",
+          quiz_game_settings_title: "Configuración del Cuestionario",
+          quiz_welcome_page_title: "Página de Bienvenida",
+          quiz_completion_page_title: "Página de Finalización",
+          quiz_completion_page_title_success: "Página de Finalización (Éxito)",
+          quiz_completion_page_title_unsuccess:
+            "Página de Finalización (Sin Éxito)",
+          label_winning_title: "Título Ganador",
+          label_winning_description: "Descripción Ganador",
+          label_losing_title: "Título Perdedor",
+          label_losing_description: "Descripción Perdedor",
+          set_chances_and_quantities_help:
+            "Activa las opciones para especificar cantidades y probabilidades de cada premio",
+          customize_section_forms: "Formulario",
+          customize_section_themes: "Diseño",
+          customize_section_rewards: "Premios",
+          customize_section_general: "General",
+          customize_section_logos: "Logos",
+          customize_section_texts: "Textos",
+          customize_section_security: "Seguridad",
+          customize_section_emails: "Emails",
+          btn_reset_cookies: "Resetear cookies",
+          btn_share_publish_now: "Publicar ahora",
+          btn_share_publish_changes: "Publicar cambios",
+          btn_add_reward: "Nuevo",
+          btn_test_allowed_emails: "Verificar un email",
+          btn_save_and_get_code: "Guardar y obtener el código",
+          btn_get_code: "Generar código de inserción",
+          error_prizes_quantities_notification:
+            "Revisa las cantidades de los premios",
+          error_prizes_chances_title: "Error",
+          error_prizes_chances_text:
+            "<b>La probabilidad total debe ser de 100</b> La suma total de las probabilidades debe ser de 100, por favor ajústalas.",
+          error_prizes_missing_looser:
+            '<b>Tu promoción se pausará automáticamente</b> Esto sucederá si se acaban los premios, para que esto no ocurra, puedes agregar una opción "sin premio"  o "perdedora" a tu ruleta.',
+          error_form_from_name:
+            "No se permiten caracteres especiales (?:,./ etc)",
+          impressions_usage_warning_80:
+            "Importante: estás por alcanzar tu límite mensual de <strong>{n} impresiones</strong> —",
+          impressions_usage_warning_100:
+            "Importante: has alcanzado tu límite mensual de <strong>{n} impresiones</strong> — la campaña se ha pausado.",
+          impressions_usage_reset_day: "Tus impresiones se reinician el",
+          modal_qr_code_title: "Obtener el código QR",
+          modal_qr_code_text:
+            "Escanea el código para abrir tu Promoción. Funciona con y sin conexión (aunque necesitarás una impresora, obviamente).",
+          modal_qr_code_btn: "Descargar Código QR",
+          modal_embed_code_title: "Insertar",
+          modal_embed_code_grab_title: "Copia tu código para insertarlo",
+          modal_embed_code_btn_generate: "Obtener código",
+          modal_embed_code_width: "Ancho",
+          modal_embed_code_height: "Alto",
+          modal_embed_code_page_title: "Titulo de Página",
+          modal_embed_code_btn_copy: "Copiar código",
+          modal_embed_launch_type: "Opciones de lanzamiento",
+          modal_embed_launch_page_load: "Al cargarse la página",
+          modal_embed_launch_exit_intent: "Al intento de salida",
+          modal_embed_launch_scroll: "Al hacer scroll",
+          modal_embed_launch_time: "Tras un tiempo establecido",
+          modal_embed_launch_only_desktop: "Solo escritorio",
+          modal_embed_launch_button: "Botón o link personalizado",
+          modal_embed_launch_button_help:
+            "Agrega el siguiente atributo html al botón, link o elemento que quieras que lance la promoción.",
+          modal_embed_standar_help:
+            "Pega el siguiente código donde quieras que aparezca tu promoción, dentro de tu sitio.",
+          embed_standar: "Estándar",
+          embed_standar_desc:
+            "Inserta la promoción como parte de tu sitio web, en cualquier página, en el medio de tu contenido.",
+          embed_fullpage: "Página Completa",
+          embed_fullpage_desc:
+            "Muestra tu promoción en una página completa cuando se carga tu sitio, en tu propio dominio.",
+          embed_slider: "Slider",
+          embed_slider_desc:
+            "Tu promoción se desliza desde un lado de la pantalla. Define opciones de inicio personalizadas, como un retraso de tiempo o intento de salida.",
+          embed_popup: "Popup",
+          embed_popup_desc:
+            "Tu promoción aparecerá en el centro de la pantalla. Define opciones de inicio personalizadas, como un retraso de tiempo o intento de salida.",
+          table_quiz_score: "Puntuación",
+          quiz_csv_import_title: "Sube un archivo CSV con las preguntas",
+          quiz_csv_import_help_1:
+            "Los datos en el archivo CSV deben estar separados por comas. El archivo no debe tener una fila de encabezado.",
+          quiz_csv_import_help_2:
+            "En el archivo CSV, la primera columna debe ser la pregunta en sí. Las siguientes cuatro columnas (de la 2ª a la 5ª) deben contener las posibles respuestas.",
+          quiz_csv_import_help_3:
+            "La sexta columna debe contener el índice de la respuesta correcta, que va del 1 al 4. Esto corresponde a la posición de la respuesta correcta en las cuatro columnas anteriores.",
+          quiz_csv_import_help_4:
+            'Para preguntas de tipo sí/no, la primera columna debe contener la pregunta y la segunda columna debe contener la respuesta, que puede ser "sí" o "no".',
+          quiz_csv_import_download_example: "Descargar CSV de Ejemplo",
+          quiz_upload_csv_btn: "O cargar desde un archivo CSV",
+          leads_table_showing_x: "Mostrando {x} de {n}",
+        },
+        multinetwork: {
+          connect_twitter_text: "Conecta tu cuenta de Twitter para comenzar.",
+          select_post: "Selecciona un Post",
+          instagram_login_text:
+            "Conecta tu cuenta de Instagram para comenzar. Acepta los permisos tanto para Páginas de Facebook y Cuentas de Instagram con las que quieras trabajar",
+          facebook_login_text:
+            "Conecta tu cuenta de Facebook para comenzar. Acepta los permisos tanto para Páginas de Facebook y Cuentas de Instagram con las que quieras trabajar",
+          twitter_input_help:
+            "Ingresa la URL de tu tweet de Twitter, por ejemplo",
+          youtube_input_help:
+            "Ingresa la URL de tu video de Youtube, por ejemplo",
+          select_post_info:
+            "Cuando hayas seleccionado todos los posts, haz click en Continuar",
+          post_limit_error: "Puedes agregar hasta {count} posts a tu sorteo",
+          importing_comments: "Importando",
+          giveaway_type: "Tipo de Sorteo",
+        },
+        upgrade: {
+          btn_cancel: "No, gracias",
+          btn_upgrade: "Actualizar Plan",
+          btn_unlock: "Suscribirme",
+          multinetwork: {
+            title: "Sorteos Multi-Red",
+            text: "Actualiza a un <strong>Plan Creator</strong> o <strong>Plan Agency</strong> (cancela cuando quieras) y comienza ahora mismo.",
+          },
+          multipost: {
+            title: "Crea sorteos entre múltiples posts",
+            text: "Los sorteos multi-posts están disponibles desde el plan Creator",
+          },
+          unlimited_giveaways: "Sorteos ilimitados en",
+          unlimited_comments: "Comentarios ilimitados",
+          switch_month: "Mensual",
+          switch_year: "Anual",
+          link_pricing: "Ver Planes & Precios",
+          comments: "Comentarios",
+          up_to: "Hasta",
+          up_to_x_comments: "Hasta <strong>{n}</strong> comentarios",
+          your_plan: "Plan actual",
+          yearly_discount_label:
+            "Paga anualmente y <b>ahorra hasta un 17%</b> del precio del plan",
+          mo: "mes",
+          yr: "año",
+          banner_offer: "30% OFF termina en:",
+          footer_note: "Renovación automática, cancela en cualquier momento",
+          continue_btn: "Comenzar ahora",
+          pick_best_plan: "Escoge el mejor plan para ti",
+          prom_pageviews_text:
+            "Las impresiones se cuentan cada vez que la ruleta es cargada en el navegador de un usuario",
+          classic_wheel_text:
+            "Además obtienes acceso a las aplicaciones de Sorteos",
+          x_active_promotions: "<strong>{n}</strong> campañas activas",
+          up_to_x_pageviews: "<strong>{n}</strong> impresiones",
+          up_to_x_pageviews_note: "Impresiones mensuales por campaña",
+          no_branding: "Sin marca de agua",
+          prom_fortune_wheel: {
+            title: "Personaliza tu ruleta con diseños profesionales",
+            text: "Contrata un <span class='pro'>Plan Starter</span> y disfruta de todas las funcionalidades premium",
+            title_watermark: "Elimina la marca de agua de AppSorteos",
+            text_watermark:
+              "Contrata un <span class='pro'>Plan Agency</span> para eliminar la marca de agua y utilizar las funcionalidades premium.",
+            title_emails: "Envía emails a tus participantes",
+            text_emails:
+              "Contrata un <span class='pro'>Plan Agency</span> para enviar emails personalizados a los ganadores de tu promoción.",
+            title_active_promotions:
+              "Haz alcanzado el limite del campañas activas",
+            text_active_promotions:
+              "Actualiza tu plan para activar más campañas en simultáneo, y además obtén acceso a todas las funcionalidades premium.",
+            title_advanced_form:
+              "Personaliza el formulario de registro con campos avanzados",
+            title_allowed_emails:
+              "Enfoca tu campaña a un conjunto limitado de participantes",
+            title_add_more_rewards: "Agrega hasta 30 premios a tu Promoción",
+            title_limit_devices:
+              "Aplica reglas anti-fraude avanzadas en tu campaña",
+            title_limit_rewards:
+              "Define la cantidad de premios disponibles y las probabilidades de ser entregados",
+            title_webhooks: "Envía notificaciones Webhooks",
+            text_webhooks:
+              "Contrata un <span class='pro'>Plan Agency</span> para configurar webhooks personalizados.",
+            feature1: "Accede a diseños profesionales",
+            feature2: "Agrega el logo de tu marca",
+            feature3: "Limita la cantidad de premios",
+            feature4: "Define la chance de cada premio",
+            feature5: "Formulario de registro avanzado",
+            feature6: "Limita dispositivos e emails",
+            feature7: "Sin marca de agua",
+            feature8: "Envía emails",
+            feature9: "Agrega hasta 30 premios",
+            btn_purchase_now: "Comprar ahora",
+          },
+          classic_wheel: {
+            title: "¡Libera todo el potencial de <br> tu Ruleta!",
+            text: "Contrata un <span class='pro'>Plan Starter</span> y disfruta de todas las funcionalidades premium",
+            feature1: "Accede a diseños profesionales",
+            feature2: "Agrega el logo de tu marca",
+            feature3: "Agrega imagen de fondo",
+            feature4: "Sin publicidad",
+            feature5: "Sin marca de agua de AppSorteos",
+            btn_purchase_now: "Comprar ahora",
+          },
+        },
+        app_facebook: {
+          cannot_find_page: "¿No aparece tu Página de Facebook?",
+          no_accounts_text:
+            "No pudimos detectar ninguna Página de Facebook. Debes aceptar los permisos solicitados para comenzar a crear sorteos.",
+        },
+        app_instagram: {
+          cannot_find_page: "¿No aparece tu Cuenta de Instagram?",
+          no_accounts_text:
+            "No pudimos detectar ninguna Cuenta Comercial de Instagram. Debes otorgar los permisos solicitados tanto para la Cuenta de Instagram que deseas conectar, como para la Página de Facebook vinculada",
+          not_account_admin: "¿No administras esta Cuenta?",
+          no_biz_accounts_title: "No encontramos tu cuenta",
+          no_biz_accounts_desc:
+            "Parece que el perfil de Facebook que conectaste aquí no tiene ninguna cuenta de Instagram de tipo empresa o creador. <br><br>Si tienes una cuenta empresa, <b>reautoriza</b> y asegúrate de aceptar los permisos requeridos, o <b>ingresa la url</b> de tu post aqui abajo.",
+          convert_profile_to_business: "Convierte tu cuenta a empresa",
+          faq_1: "¿No aparece tu Cuenta de Instagram?",
+          faq_2: "No administro la cuenta del sorteo",
+          faq_3: "Mi cuenta no es Empresa",
+          faqs_title: "Problemas comunes",
+          meta_warning_title: "Incidencia con la API de Meta",
+          meta_warning_text_1:
+            "Debido a un problema general con la API de META, no se pueden leer los comentarios de Instagram (el problema es intermitente).",
+          meta_warning_text_2:
+            "La incidencia se abrió el 29 de agosto, y Meta ha confirmado que están trabajando en una solución.",
+          meta_warning_text_3:
+            'Puedes intentar ejecutar tu sorteo ingresando la URL manualmente <a href="{url}">aquí</a> instalando nuestra Extensión para Chrome.',
+          meta_warning_btn: "Intentar ingresando la URL",
+          meta_warning_end: "Disculpa las molestias.",
+        },
+        ig_collab_modal: {
+          title: "Solicita una colaboración",
+          desc: "Solicita acceso al administrador de la cuenta para crear tu sorteo con este post que no administras",
+          step_1: "Envía la invitación",
+          step_2: "El administrador concede los permisos",
+          step_3: "Realizas tu sorteo, aquí mismo",
+          btn_request: "Solicitar acceso",
+          share_title: "Comparte el enlace",
+          share_desc:
+            "Este es el enlace que debes compartir con la persona que administra la cuenta <strong>{account}</strong>. <br><br>Cuando se hayan aceptado los permisos, esta pantalla se actualizá y podrás comenzar.",
+          btn_copy_link: "Copiar enlace",
+        },
+        app_wheel: {
+          btn_spin_default: "Girar la Ruleta!",
+          btn_play: "Comenzar",
+          btn_save: "Guardar",
+          btn_create: "Crear",
+          btn_clear_results: "Limpiar Resultados",
+          btn_text_mode: "Modo Texto",
+          btn_upload: "Subir",
+          btn_delete: "Eliminar",
+          btn_new_wheel: "Nueva",
+          btn_sort: "Ordenar",
+          btn_random: "Mezclar",
+          btn_clear: "Limpiar",
+          btn_advanced: "Avanzado",
+          btn_add_entry: "Agregar",
+          form_first_name: "Nombre",
+          form_last_name: "Apellido",
+          form_email: "Correo Electrónico",
+          tooltip_fullscreen: "Pantalla Completa",
+          tooltip_show_winners: "Mostrar Resultados",
+          tooltip_reset_wheel: "Resetear",
+          tooltip_toggle_sound: "Activar Sonidos",
+          tooltip_close: "Salir",
+          tab_config: "Opciones",
+          tab_entries: "Entradas",
+          tab_design: "Diseño",
+          tab_rewards: "Premios",
+          tab_saved: "Mis Ruletas",
+          default_title: "¡Gira la ruleta y gana!",
+          default_description:
+            "Regístrate y obtiene una chance para ganar fabulosos premios!",
+          default_prize_text: "Premio",
+          default_prize_empty_1: "Sin Suerte",
+          default_prize_empty_2: "Casi!",
+          default_prize_empty_3: "Sin Premio",
+          default_prize_empty_4: "Vacío",
+          label_title: "Título",
+          label_name: "Nombre",
+          label_description: "Descripción",
+          label_logo: "Logo",
+          label_logo_help: "Tamaño recomendado (300x300px)",
+          label_background_image: "Imagen de Fondo",
+          label_background_image_help: "Tamaño recomendado (1920x1080px)",
+          label_remove_ads: "Eliminar publicidad",
+          label_remove_watermark: "Eliminar marca de agua",
+          label_text_color: "Texto",
+          label_background_color: "Color de Fondo",
+          label_wheel_slices_color: "Color de Entradas",
+          label_wheel_border_color: "Color de Ruleta",
+          label_wheel_slice_text_color: "Texto en Ruleta",
+          label_wheel_pointer_color: "Color de Puntero",
+          label_wheel_dots_color: "Color de Puntos",
+          label_wheel_line_size: "Grosor de Linea",
+          label_add_entry: "Agregar",
+          label_add_entries: "Agregar Entradas",
+          label_entries: "Entradas",
+          label_show_confettis: "Lanzar Confetis",
+          label_play_sounds: "Emitir Sonidos",
+          label_spin_btn: "Botón Girar",
+          label_show_winners: "Mostrar resultados",
+          label_themes: "Temas",
+          label_advanced_settings: "Opciones Avanzadas",
+          label_auto_remove_winners: "Remover ganadores",
+          label_auto_remove_winners_help:
+            "Elimina de la Ruleta la opción ganadora automáticamente",
+          label_spin_duration: "Duración Giro",
+          label_stats_hits: "vistas",
+          label_stats_spins: "spins",
+          label_stats_users: "usuarios",
+          label_capture_leads: "Formulario de Registro",
+          label_prize_0_chance: "Este premio nunca será elegido",
+          label_improve_slices: "Multiplicar entradas",
+          powered_by_watermark: "Crea tu Ruleta con",
+          start_button_placeholder: "¡Girar!",
+          switch_type_lead_title: "Ruleta con Registro",
+          switch_type_lead_desc:
+            "Los participantes se registran, dejan sus datos, y luego giran la ruleta",
+          switch_type_anon_title: "Ruleta Clásica",
+          switch_type_anon_desc:
+            "Los participantes (o tú), giran la ruleta anónimamente.",
+          error_no_entries: "Agregar al menos 2 entradas/nombres a la Ruleta",
+          error_default_entries: "Edita las entradas/nombres de la Ruleta",
+          saved_create_account:
+            "Crea una cuenta para guardar tus ruletas. ¡Es gratis!",
+          saved_empty_wheels:
+            "No tienes ruletas guardadas. Cuando guardes una, aparecerá aquí",
+          save_modal: {
+            title: "Guardar",
+            placeholder_name: "Mi Ruleta de la Suerte",
+          },
+          share_modal: { title: "Compartir" },
+          leads_modal: {
+            title: "Nueva Ruleta con Registro!",
+            desc: "Ahora puedes crear una Ruleta donde los participantes deben registrarse primero para luego hacer girar la ruleta",
+            step_1: "Personaliza tu Ruleta",
+            step_2: "Define la cantidad de premios",
+            step_3: "Comparte el link de tu Ruleta",
+            step_4: "Captura Nombre + Email",
+            btn_activate: "Activar Ruleta con Registro",
+            btn_cancel: "Regresar",
+          },
+        },
+        app_eng_rate: {
+          followers: "Seguidores",
+          following: "Siguiendo",
+          engagement_rate: "Tasa de Engagement",
+          avg_likes: "Likes Prom. / Post",
+          avg_comments: "Comentarios Prom. / Post",
+          score_higher: "El engagement de @{username} es superior al promedio",
+          score_avg: "El engagement de @{username} es normal",
+          score_low: "El engagement de @{username} es mas bajo que el promedio",
+          not_found:
+            "Usurio no encontrado, aseguráte de ingresar un perfil público de una cuenta Creator o Empresa.",
+        },
+        app_terms: {
+          terms_title_placeholder: "Nombre del sorteo o promoción",
+          terms_headline: "Terms and conditions for promotion participation",
+          terms_headline: "Bases legales de participación en la promoción",
+          promotion_title: "Promotion or Giveaway Title",
+          company_name: "Company Name",
+          company_address: "Company Address",
+          company_tax_id: "Company Tax ID",
+          alert:
+            "Completa los datos y revisa los términos, luego publica la página de bases legales",
+          empty: "No hay términos y condiciones creados aún.",
+          btn_save: "Guardar Página",
+          btn_create: "Crear Bases Legales",
+          title: "Mis Bases Legales",
+          edit_all: "Editar todo el contenido",
+          select_template: "Selecciona una plantilla",
+          template_promo_title: "Promociones",
+          template_promo_desc:
+            "Utiliza este template para promociones como la Ruleta de Premios",
+          template_giveaway_title: "Sorteos",
+          template_giveaway_desc:
+            "Utiliza este template para sorteos en redes sociales, como Instagram o Facebook.",
+        },
+        fb_reconnect_modal: {
+          title: "Conecta con Facebook",
+          step_1:
+            "Asegúrate que el sorteo lo has publicado en una Página de Facebook y no en un Perfil Personal.",
+          step_2:
+            "Asegúrate que estás conectado con un usuario de Facebook que es administrador de la Página.",
+          step_3:
+            "Reautoriza a AppSorteos, y verifica que das permisos de acceso a las páginas donde quieres realizar sorteos.",
+          ig_title: "Conecta con Instagram",
+          ig_step_1:
+            "Asegúrate que estás conectado con un usuario de Facebook que es administrador de la Cuenta de Instagram",
+          ig_step_2:
+            "Otorga permisos tanto para las Cuentas de Instagram, como para las Páginas de Facebook asociadas.",
+          ig_step_3:
+            "Reautoriza a AppSorteos, y verifica que das permisos de acceso a las páginas y cuentas donde quieres realizar sorteos.",
+        },
+        ig_user_not_found_modal: {
+          title: "No encontramos tu cuenta",
+          desc: "Tu cuenta de Instagram debe ser de tipo Business (Empresa). Conecta con Facebook y acepta los permisos para comenzar con tu sorteo.",
+          no_business_account: "Mi cuenta no es Business",
+        },
+        secret_santa: {
+          step_1_title: "Agrega los participantes",
+          step_2_title: "¡Escribe el mensaje!",
+          step_3_title: "Revisa todo",
+          step_3_desc:
+            "Por favor, verifica que los datos de los participantes (emails) sean correctos para que todos reciban las instrucciones.",
+          btn_send_emails: "¡Enviar Emails!",
+          btn_add_more_friends: "Agrega más amigos",
+          btn_go_step: "Ir al Paso {step} »",
+          btn_send_invites: "Enviar Invitaciones »",
+          error_duplicate_names:
+            "Hay nombres repetidos en tu lista. Trata de identificar a cada persona con un nombre distinto para que no haya confusiones.",
+          label_subject: "Asunto",
+          label_subject_help:
+            "Personaliza el asunto del email. $NOMBRE se reemplazará por el nombre de tu amigo",
+          label_title: "Título",
+          label_message: "Mensaje",
+          label_your_name: "¿Quien organiza?",
+          label_your_name_help: "Tu nombre o el nombre de tu empresa",
+          label_message_help:
+            "Explica las condiciones de tu sorteo, el precio máximo del regalo, la fecha límite o cuando harán el intercambio. Puedes personalizar este mensaje a tu gusto.",
+          label_participants: "Participantes",
+          label_preview: "Vista previa",
+          sending_emails: "Estamos enviando los emails",
+          success_message:
+            "Tu sorteo se ha realizado correctamente y se han enviado todos los emails",
+          success_message_create_account:
+            "Crea una cuenta ahora para poder administrar este sorteo, ver los emparejamientos, o repetirlo en un futuro.",
+          placeholder_name: "Nombre {i}",
+          placeholder_email: "Email",
+          placeholder_user_email: "Email de {name}",
+          placeholder_organizer: "Maria, Juan, Mi Empresa",
+          error_participants_count: "Agrega al menos 3 participantes",
+          error_organizer: "Ingresa el organizador/a",
+          error_title: "Ingresa un Título",
+          error_message: "Edita el mensaje, o déjalo en blanco.",
+          default_title: "Amigo Secreto 2023",
+          default_message:
+            "Deberás hacer un regalo para tu amigo secreto:\n\nPresupuesto: $1.000\nCuándo: \nDónde: ",
+          secret_santa: "Descubre tu amigo secreto aqui:",
+          placeholder_title: "Amigo Secreto Familia 2023",
+          placeholder_title_1: "Amigo Secreto {y}",
+          placeholder_title_2: "Navidad {y}",
+          placeholder_title_3: "Año Nuevo {y}",
+          placeholder_title_4: "San Valentín {y}",
+          share_message:
+            "Shhh... es un secreto! Descubre a quién debes hacerle el regalo aquí:",
+          press_enter: "O presiona Enter",
+          past_draws_title: "Tus sorteos pasados",
+          create_new: "Crear nuevo",
+        },
+      };
+    </script>
+    <!-- Translations end -->
+
+    <!-- Minify start -->
+    <script
+      src="../../js/all.front.compiled4614.js?1714697648"
+      defer="defer"
+    ></script>
+
+    <script
+      src="../../js/frontend.bundle4614.js?1714697648"
+      defer="defer"
+    ></script>
+    <!-- Minify end -->
+
+    <script>
+      __WHEEL_DATA__ = [];
+      __SAVED_WHEELS__ = [];
+    </script>
+    <!-- Minify start -->
+    <script
+      src="../../js/all.wheel.v2.compiled2a88.js?1714697650"
+      defer="defer"
+    ></script>
+    <!-- Minify end -->
+
+    <style>
+      #errors_display {
+      }
+    </style>
+  </body>
+</html>
